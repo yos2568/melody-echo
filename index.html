@@ -1,0 +1,3330 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>เล่นตามทำนอง</title>
+    <meta
+      name="description"
+      content="ฟังทำนองแล้วเล่นตามบนคีย์บอร์ด ฝึกจำทำนองและรู้จักเพลงที่คุ้นหู"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#dfe9ef" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1a21" media="(prefers-color-scheme: dark)" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200
+          %2032%2032%27%3E%3Crect%20x%3D%274%27%20y%3D%274%27%20width%3D%2724%27%20height%
+          3D%2724%27%20rx%3D%274%27%20fill%3D%27%2523ffffff%27%20stroke%3D%27%2523c4421f%2
+          7%20stroke-width%3D%273%27%2F%3E%3Crect%20x%3D%2711%27%20y%3D%274%27%20width%3D%
+          274%27%20height%3D%2714%27%20fill%3D%27%2523c4421f%27%2F%3E%3Crect%20x%3D%2719%2
+          7%20y%3D%274%27%20width%3D%274%27%20height%3D%2714%27%20fill%3D%27%2523c4421f%27
+          %2F%3E%3C%2Fsvg%3E"
+    />
+    <meta property="og:title" content="เล่นตามทำนอง" />
+    <meta
+      property="og:description"
+      content="ฟังทำนองแล้วเล่นตามบนคีย์บอร์ด ฝึกจำทำนองและรู้จักเพลงที่คุ้นหู"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="th_TH" />
+    <style>
+      /* สีหลัก */
+      :root {
+        --bg: #dfe9ef; /* พื้นหลังของหน้า */
+        --surface: #ffffff; /* พื้นการ์ด */
+        --surface-2: #f3f8fa; /* พื้นช่องใส่ข้อมูลและปุ่มรอง */
+        --line: #c6d6e0; /* เส้นขอบ */
+        --line-strong: #b5c8d4; /* เส้นหนัก เช่น เส้นบรรทัดห้าเส้น */
+        --text: #17252f; /* ตัวอักษรหลัก */
+        --text-soft: #33454f; /* ตัวอักษรรอง */
+        --muted: #5f7584; /* คำอธิบายเล็ก (ใช้บนพื้นการ์ดเท่านั้น) */
+        --action: #c4421f; /* ปุ่มหลักและจุดเน้น */
+        --action-ink: #ffffff; /* ตัวอักษรบนปุ่มหลัก */
+        --action-soft: #fdece7; /* พื้นเน้นอ่อน */
+        --blue: #3f6f8d; /* สีรอง และวงโฟกัส */
+        --blue-soft: #e3eef5; /* พื้นข้อมูลอ่อน */
+        --brass: #9a6a1f; /* สีที่สาม ใช้กับเหรียญ */
+        --good: #2e7d59; /* ถูก */
+        --good-soft: #e1f2ea; /* พื้นเมื่อถูก */
+        --warn: #9a6a1f; /* ใกล้ถูก หรือควรระวัง */
+        --bad: #b3261e; /* ผิด */
+        --bad-soft: #fbe6e4; /* พื้นเมื่อผิด */
+        color-scheme: light;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #0f1a21;
+          --surface: #172630;
+          --surface-2: #1c2f3b;
+          --line: #2c4150;
+          --line-strong: #3a5263;
+          --text: #e6eef3;
+          --text-soft: #c3d3dc;
+          --muted: #8ea3b1;
+          --action: #f07a5a;
+          --action-ink: #1b0e09;
+          --action-soft: #3a221b;
+          --blue: #8cb8d3;
+          --blue-soft: #1d3442;
+          --brass: #d9a94f;
+          --good: #7fd1a6;
+          --good-soft: #1b3a2e;
+          --warn: #e3b04b;
+          --bad: #ff8a80;
+          --bad-soft: #4a2220;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme='dark'] {
+        --bg: #0f1a21;
+        --surface: #172630;
+        --surface-2: #1c2f3b;
+        --line: #2c4150;
+        --line-strong: #3a5263;
+        --text: #e6eef3;
+        --text-soft: #c3d3dc;
+        --muted: #8ea3b1;
+        --action: #f07a5a;
+        --action-ink: #1b0e09;
+        --action-soft: #3a221b;
+        --blue: #8cb8d3;
+        --blue-soft: #1d3442;
+        --brass: #d9a94f;
+        --good: #7fd1a6;
+        --good-soft: #1b3a2e;
+        --warn: #e3b04b;
+        --bad: #ff8a80;
+        --bad-soft: #4a2220;
+        color-scheme: dark;
+      }
+      /* ขนาดและระยะ */
+      :root {
+        --space-1: 4px; /* ระยะห่างเล็กที่สุด */
+        --space-2: 8px; /* ระยะห่างเล็ก */
+        --space-3: 12px; /* ระยะห่างกลาง */
+        --space-4: 16px; /* ระยะห่างมาตรฐานและขอบหน้า */
+        --space-5: 24px; /* ระยะห่างใหญ่ */
+        --space-6: 32px; /* ระยะห่างใหญ่มาก */
+        --radius-control: 12px; /* มุมปุ่มและช่องกรอก */
+        --radius-card: 18px; /* มุมการ์ด */
+        --radius-pill: 999px; /* มุมแบบแคปซูล */
+        --page-width: 592px; /* ความกว้างสูงสุดของหน้า รวมขอบ */
+        --target-min: 44px; /* ขนาดต่ำสุดของปุ่มที่ต้องแตะ */
+        --button-main: 52px; /* ความสูงปุ่มหลัก */
+        --text-small: 14.4px; /* ตัวอักษรเล็ก */
+        --text-base: 16px; /* ตัวอักษรปกติ */
+        --text-medium: 18px; /* ตัวอักษรหัวข้อย่อย */
+        --text-large: 22px; /* ตัวอักษรตัวเลข */
+        --text-title: 28px; /* ตัวอักษรหัวเรื่อง */
+        --medal-size: 32px; /* ขนาดเหรียญ */
+        --pop-distance: 12px; /* ระยะที่คะแนนลอยขึ้น */
+        --pop-duration: 200ms; /* เวลาที่คะแนนลอย */
+        --fade-duration: 200ms; /* เวลาเปลี่ยนสถานะของปุ่มและช่อง */
+        --result-step: 80ms; /* ระยะหน่วงของแต่ละบรรทัดในหน้าสรุป */
+        --font-main: 'Sarabun', 'Leelawadee UI', 'Noto Sans Thai', Thonburi, Tahoma, system-ui, sans-serif;
+        --font-mono: ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: var(--text-base) / 1.6 var(--font-main);
+      }
+      main {
+        max-width: var(--page-width);
+        margin: 0 auto;
+        padding: var(--space-5) var(--space-4);
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1 {
+        font-size: var(--text-title);
+        line-height: 1.4;
+        text-wrap: balance;
+      }
+      h2 {
+        font-size: var(--text-medium);
+        margin: var(--space-4) 0 var(--space-2);
+        text-wrap: balance;
+      }
+      h3 {
+        font-size: var(--text-base);
+        margin: var(--space-3) 0 var(--space-1);
+      }
+      h1:focus {
+        outline: none;
+      }
+      button,
+      select {
+        font: inherit;
+        color: var(--text);
+        background: var(--surface-2);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-control);
+        min-height: var(--target-min);
+        padding: var(--space-2) var(--space-3);
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      button:focus-visible,
+      select:focus-visible,
+      summary:focus-visible,
+      input:focus-visible,
+      [role='button']:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 2px;
+      }
+      button:disabled,
+      button[aria-disabled='true'] {
+        opacity: 0.5;
+        cursor: default;
+      }
+      button.primary {
+        background: var(--action);
+        color: var(--action-ink);
+        border-color: var(--action);
+        min-height: var(--button-main);
+        font-weight: 700;
+      }
+      button:active:not(:disabled) {
+        transform: scale(0.98);
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin: var(--space-4) 0;
+      }
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-card);
+        padding: var(--space-4);
+        margin-top: var(--space-4);
+      }
+      .soft {
+        color: var(--text-soft);
+      }
+      .small {
+        font-size: var(--text-small);
+      }
+      .segments {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+      .segments button[aria-pressed='true'] {
+        background: var(--surface);
+        border-color: var(--blue);
+        outline: 1px solid var(--blue);
+        font-weight: 700;
+      }
+      .choice-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-3);
+      }
+      .choice-grid button {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: start;
+        min-width: 0;
+        background: var(--surface);
+      }
+      .choice-grid button small {
+        color: var(--text-soft);
+        font-size: var(--text-small);
+        line-height: 1.5;
+      }
+      .choice-grid button[aria-pressed='true'] {
+        border-color: var(--action);
+        outline: 2px solid var(--action);
+        background: var(--action-soft);
+      }
+      .hud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2) var(--space-5);
+        align-items: flex-end;
+        margin-bottom: var(--space-3);
+      }
+      .hud strong {
+        display: block;
+        font-size: var(--text-large);
+        line-height: 1.15;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+      .hud-item {
+        position: relative;
+        min-width: 0;
+      }
+      .score-pop {
+        position: absolute;
+        left: 0;
+        top: -4px;
+        color: var(--good);
+        font-weight: 700;
+        pointer-events: none;
+        animation: score-pop var(--pop-duration) ease-out forwards;
+      }
+      @keyframes score-pop {
+        from {
+          transform: translateY(var(--pop-distance));
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .medals {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+      }
+      .medals svg,
+      .badge-list svg {
+        width: var(--medal-size);
+        height: var(--medal-size);
+        color: var(--brass);
+        flex: none;
+      }
+      .medal-earned circle {
+        fill: var(--action-soft);
+      }
+      .badge-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .badge-list li {
+        display: flex;
+        gap: var(--space-3);
+        align-items: center;
+        margin-bottom: var(--space-3);
+      }
+      .steps {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .steps li {
+        display: flex;
+        gap: var(--space-3);
+        align-items: center;
+        margin-bottom: var(--space-3);
+      }
+      .steps svg {
+        width: 56px;
+        height: 56px;
+        flex: none;
+        color: var(--blue);
+      }
+      .toast {
+        position: fixed;
+        left: var(--space-4);
+        right: var(--space-4);
+        bottom: var(--space-4);
+        max-width: 360px;
+        margin: 0 auto;
+        padding: var(--space-3);
+        background: var(--blue-soft);
+        border: 1px solid var(--blue);
+        border-radius: var(--radius-control);
+        color: var(--text);
+        text-align: center;
+        z-index: 10;
+      }
+      .notice {
+        color: var(--text-soft);
+        margin-bottom: var(--space-2);
+      }
+      .notice:empty,
+      [data-slot]:empty {
+        display: none;
+      }
+      .settings {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-card);
+        padding: var(--space-4);
+        margin-top: var(--space-5);
+      }
+      .settings summary {
+        font-weight: 700;
+        cursor: pointer;
+        min-height: var(--target-min);
+        display: flex;
+        align-items: center;
+      }
+      .settings label {
+        display: block;
+        margin-top: var(--space-3);
+      }
+      .settings input[type='range'] {
+        width: 100%;
+        accent-color: var(--action);
+      }
+      .check-result {
+        margin-top: var(--space-3);
+        padding: var(--space-3);
+        background: var(--surface-2);
+        border-radius: var(--radius-control);
+      }
+      .check-result ul {
+        padding-inline-start: var(--space-5);
+        margin: var(--space-2) 0;
+      }
+      .check-result .is-pass {
+        color: var(--good);
+        font-weight: 700;
+      }
+      .check-result .is-fail {
+        color: var(--bad);
+        font-weight: 700;
+      }
+      .result-score {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.15;
+        font-variant-numeric: tabular-nums;
+      }
+      .result-rows > * {
+        opacity: 0;
+        transition: opacity var(--fade-duration);
+        transition-delay: calc(var(--result-step) * var(--row, 0));
+      }
+      .result-rows.is-revealed > *,
+      :root[data-reduce='true'] .result-rows > * {
+        opacity: 1;
+      }
+      .stat-line {
+        margin: var(--space-1) 0;
+      }
+      .new-best {
+        color: var(--good);
+        font-weight: 700;
+      }
+      footer {
+        margin-top: var(--space-5);
+        color: var(--text-soft);
+        font-size: var(--text-small);
+      }
+      .sr {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+      }
+      progress {
+        width: 100%;
+        accent-color: var(--action);
+      }
+      :root[data-reduce='true'] *,
+      :root[data-reduce='true'] *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .result-rows > * {
+          opacity: 1;
+        }
+      }
+      /* สีของเกม */
+      :root {
+        --key-white: #ffffff; /* พื้นคีย์ขาว */
+        --key-white-ink: #17252f; /* ตัวอักษรบนคีย์ขาว */
+        --key-black: #17252f; /* พื้นคีย์ดำ */
+        --key-black-ink: #ffffff; /* ตัวอักษรบนคีย์ดำ */
+        --key-line: #b5c8d4; /* เส้นขอบคีย์ */
+        --key-lit: #fdece7; /* พื้นคีย์ขาวที่กำลังสว่าง */
+        --key-lit-black: #c4421f; /* พื้นคีย์ดำที่กำลังสว่าง */
+        --key-lit-line: #c4421f; /* เส้นขอบคีย์ที่สว่าง */
+        --key-right: #e1f2ea; /* พื้นคีย์ที่กดถูก */
+        --key-wrong: #fbe6e4; /* พื้นคีย์ที่กดผิด */
+        --dot-fill: #3f6f8d; /* สีจุดที่เล่นตามแล้ว */
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --key-white: #dfe9ef;
+          --key-white-ink: #0f1a21;
+          --key-black: #0b1318;
+          --key-black-ink: #e6eef3;
+          --key-line: #5f7584;
+          --key-lit: #f6c9bb;
+          --key-lit-black: #b8431f;
+          --key-lit-line: #f07a5a;
+          --key-right: #a9e0c3;
+          --key-wrong: #f6b5ae;
+          --dot-fill: #8cb8d3;
+        }
+      }
+      :root[data-theme='dark'] {
+        --key-white: #dfe9ef;
+        --key-white-ink: #0f1a21;
+        --key-black: #0b1318;
+        --key-black-ink: #e6eef3;
+        --key-line: #5f7584;
+        --key-lit: #f6c9bb;
+        --key-lit-black: #b8431f;
+        --key-lit-line: #f07a5a;
+        --key-right: #a9e0c3;
+        --key-wrong: #f6b5ae;
+        --dot-fill: #8cb8d3;
+      }
+      /* ขนาดและระยะ */
+      :root {
+        --key-height: 150px; /* ความสูงของคีย์ขาว (ค่าจริงตั้งจาก CONFIG.keyHeightPx) */
+        --key-white-min: 36px; /* ความกว้างต่ำสุดของคีย์ขาว */
+        --key-black-min: 26px; /* ความกว้างต่ำสุดของคีย์ดำ */
+        --key-black-ratio: 0.675; /* ความกว้างของคีย์ดำเทียบกับคีย์ขาว */
+        --dot-size: 14px; /* ขนาดจุดบอกความคืบหน้า */
+      }
+      .tune-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+      .tune-list button {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: start;
+        background: var(--surface);
+      }
+      .tune-list button small {
+        color: var(--text-soft);
+        font-size: var(--text-small);
+      }
+      .tune-list button[aria-pressed='true'] {
+        border-color: var(--action);
+        outline: 2px solid var(--action);
+        background: var(--action-soft);
+      }
+      .tune-list svg {
+        width: 20px;
+        height: 20px;
+        color: var(--brass);
+        vertical-align: middle;
+      }
+      #earNotice {
+        margin-top: var(--space-2);
+      }
+      .choice-grid button[aria-disabled='true'] {
+        border-style: dashed;
+      }
+      .status {
+        font-size: var(--text-medium);
+        font-weight: 700;
+        min-height: 1.6em;
+        margin: var(--space-2) 0;
+      }
+      .dots {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        min-height: var(--dot-size);
+        margin-bottom: var(--space-2);
+      }
+      .dot {
+        width: var(--dot-size);
+        height: var(--dot-size);
+        border-radius: var(--radius-pill);
+        border: 2px solid var(--dot-fill);
+      }
+      .dot.is-filled {
+        background: var(--dot-fill);
+      }
+      .readout {
+        font-size: 40px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.3;
+        margin: var(--space-3) 0;
+      }
+      .hearts {
+        display: inline-flex;
+        gap: 2px;
+        vertical-align: middle;
+        margin-inline-end: var(--space-2);
+      }
+      .hearts svg {
+        width: 18px;
+        height: 18px;
+        color: var(--bad);
+      }
+      .keyboard {
+        position: relative;
+        display: flex;
+        height: var(--key-height);
+        margin: var(--space-4) calc(-1 * var(--space-4));
+        user-select: none;
+        touch-action: manipulation;
+      }
+      @media (min-width: 480px) {
+        .keyboard {
+          margin-inline: 0;
+        }
+      }
+      .key {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 0 var(--space-2);
+        border: 1px solid var(--key-line);
+        min-height: 88px;
+        transition: background var(--fade-duration);
+      }
+      .key-white {
+        flex: 1 1 0;
+        min-width: var(--key-white-min);
+        height: 100%;
+        background: var(--key-white);
+        color: var(--key-white-ink);
+        border-radius: 0 0 8px 8px;
+      }
+      .key-black {
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        height: 60%;
+        width: calc(100% / 8 * var(--key-black-ratio));
+        min-width: var(--key-black-min);
+        left: calc(100% / 8 * (var(--after) + 1) - 100% / 8 * var(--key-black-ratio) / 2);
+        background: var(--key-black);
+        color: var(--key-black-ink);
+        border-radius: 0 0 6px 6px;
+      }
+      .key-label {
+        font-size: var(--text-small);
+        font-weight: 700;
+        line-height: 1.2;
+        pointer-events: none;
+      }
+      .key-mark {
+        min-height: 1.2em;
+        font-size: var(--text-small);
+        font-weight: 700;
+        pointer-events: none;
+      }
+      .key.is-lit {
+        background: var(--key-lit);
+        border-color: var(--key-lit-line);
+        box-shadow: inset 0 8px 0 var(--key-lit-line);
+      }
+      .key-black.is-lit {
+        background: var(--key-lit-black);
+      }
+      .key.is-lit .key-mark::before {
+        content: '●';
+      }
+      .key.is-down {
+        transform: translateY(2px);
+      }
+      .key.is-right {
+        background: var(--key-right);
+        border-color: var(--good);
+        box-shadow: inset 0 0 0 3px var(--good);
+        color: var(--key-white-ink);
+      }
+      .key.is-right .key-mark::before {
+        content: '✓';
+      }
+      .key.is-wrong {
+        background: var(--key-wrong);
+        border-color: var(--bad);
+        box-shadow: inset 0 0 0 3px var(--bad);
+        border-style: dashed;
+        color: var(--key-white-ink);
+      }
+      .key.is-wrong .key-mark::before {
+        content: '✗';
+      }
+      .key.is-off {
+        opacity: 0.35;
+        border-style: dotted;
+        cursor: default;
+      }
+      .key.is-start {
+        outline: 3px dashed var(--brass);
+        outline-offset: -4px;
+      }
+      .key.is-start .key-mark::before {
+        content: '▶';
+      }
+      .song-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 var(--space-4);
+      }
+      .song-list li {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-3);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-control);
+        padding: var(--space-3);
+        margin-bottom: var(--space-2);
+      }
+      .song-list .song-text {
+        flex: 1 1 160px;
+        min-width: 0;
+      }
+      .retry-list {
+        list-style: none;
+        padding: 0;
+        margin: var(--space-2) 0;
+      }
+      .retry-list li {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-2);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p id="notice" class="notice" role="status"></p>
+      <section data-screen="home">
+        <header>
+          <h1 tabindex="-1" data-t="title"></h1>
+          <p class="soft" data-t="homePitch"></p>
+        </header>
+        <h2 data-t="pickMode"></h2>
+        <div id="modes" class="choice-grid"></div>
+        <p id="earNotice" class="notice" role="status"></p>
+        <div id="slotHome" data-slot="home"></div>
+        <div id="levelBlock">
+          <h2 data-t="pickLevel"></h2>
+          <div id="levels" class="segments"></div>
+        </div>
+        <div id="tuneBlock">
+          <h2 data-t="tunePickLabel"></h2>
+          <div id="tunes" class="tune-list"></div>
+          <div class="actions">
+            <button id="randomTune" data-t="btnRandomTune"></button>
+          </div>
+        </div>
+        <p id="homeBest" class="soft"></p>
+        <p id="learnedLine" class="soft"></p>
+        <div class="actions">
+          <button id="startPlay" class="primary" data-t="btnPlay"></button>
+          <button id="openHowto" data-t="btnHowto"></button>
+          <button id="openSongbook" data-t="btnSongbook"></button>
+          <button id="openBadges" data-t="badgesTitle"></button>
+        </div>
+        <div id="homeBadges" class="medals"></div>
+        <details class="settings" id="settings">
+          <summary data-t="settings"></summary>
+          <h3 data-t="keyLabelsLabel"></h3>
+          <div id="labelModes" class="segments"></div>
+          <label for="volume" data-t="volume"></label>
+          <input type="range" id="volume" min="0" max="100" value="25" />
+          <div class="actions">
+            <button id="testSound" data-t="btnTestSound"></button>
+          </div>
+          <label for="theme" data-t="themeLabel"></label>
+          <select id="theme">
+            <option value="auto" data-t="themeAuto"></option>
+            <option value="light" data-t="themeLight"></option>
+            <option value="dark" data-t="themeDark"></option>
+          </select>
+          <label><input id="reduce" type="checkbox" /> <span data-t="reduceMotion"></span></label>
+          <div class="actions">
+            <button id="clearData" data-t="btnClearData"></button>
+            <button id="check" data-t="btnSelfCheck"></button>
+          </div>
+          <div id="checkResult" class="check-result" hidden></div>
+        </details>
+      </section>
+      <section data-screen="play" hidden>
+        <h1 id="playTitle" tabindex="-1"></h1>
+        <div id="hud" class="hud">
+          <div class="hud-item" id="hudScoreBox">
+            <span class="small soft" data-t="hudScore"></span>
+            <strong id="hudScore">0</strong>
+          </div>
+          <div class="hud-item" id="hudLivesBox">
+            <span class="small soft">&nbsp;</span>
+            <strong id="hudLives"></strong>
+          </div>
+          <div class="hud-item">
+            <span class="small soft">&nbsp;</span>
+            <strong id="hudProgress"></strong>
+          </div>
+          <div id="slotHud" data-slot="hud"></div>
+        </div>
+        <p id="status" class="status" role="status"></p>
+        <div id="dots" class="dots" aria-hidden="true"></div>
+        <div id="readout" class="readout" hidden></div>
+        <div id="tuneCard" class="panel" hidden>
+          <h2 id="tuneCardTitle"></h2>
+          <p id="tuneCardBy" class="soft"></p>
+          <p id="tuneCardLine"></p>
+        </div>
+        <div id="keyboard" class="keyboard" role="group" data-t-aria="title"></div>
+        <div class="actions">
+          <button id="replayBtn" data-t="btnReplay"></button>
+          <span id="replaysLeft" class="soft"></span>
+          <button id="nextBtn" class="primary" data-t="btnNext" hidden></button>
+          <button id="quitBtn" data-t="btnQuit"></button>
+          <div id="slotActions" data-slot="actions"></div>
+        </div>
+        <div id="slotPanel" data-slot="panel"></div>
+      </section>
+      <section data-screen="result" hidden>
+        <h1 id="resultHeading" tabindex="-1"></h1>
+        <div id="resultBody" class="panel result-rows"></div>
+        <div id="slotResult" data-slot="result"></div>
+        <div class="actions">
+          <button id="againBtn" class="primary" data-t="btnAgain"></button>
+          <button id="homeBtn" data-t="btnHome"></button>
+        </div>
+      </section>
+      <section data-screen="howto" hidden>
+        <h1 tabindex="-1" data-t="btnHowto"></h1>
+        <ol id="instructions" class="steps"></ol>
+        <button id="closeHowto" class="primary" data-t="backHome"></button>
+      </section>
+      <section data-screen="badges" hidden>
+        <h1 tabindex="-1" data-t="badgesTitle"></h1>
+        <ul id="badgeList" class="badge-list"></ul>
+        <button id="closeBadges" data-t="backHome"></button>
+      </section>
+      <section data-screen="songbook" hidden>
+        <h1 tabindex="-1" data-t="btnSongbook"></h1>
+        <ul id="songList" class="song-list"></ul>
+        <button id="closeSongbook" data-t="backHome"></button>
+      </section>
+      <p id="toast" class="toast" role="status" aria-live="polite" hidden></p>
+      <footer data-t="footer"></footer>
+    </main>
+    <script>
+      (function () {
+        'use strict';
+        /* ═══════════ โซน A · ข้อมูล (แก้ได้) ═══════════ */
+        /* คีย์บอร์ด C4 ถึง C5: id = รหัส, midi = เลขโน้ต MIDI, black = เป็นคีย์ดำหรือไม่,
+           letter = ชื่อโน้ตที่แสดง, solfege = ชื่อโด เร มี (คีย์ดำไม่มี), key = แป้นบนคีย์บอร์ดคอมพิวเตอร์ */
+        var KEYS = [
+          { id: 'C4', midi: 60, black: false, letter: 'C', solfege: 'โด', key: 'a' },
+          { id: 'Cs4', midi: 61, black: true, letter: 'C♯', solfege: '', key: 'w' },
+          { id: 'D4', midi: 62, black: false, letter: 'D', solfege: 'เร', key: 's' },
+          { id: 'Ds4', midi: 63, black: true, letter: 'D♯', solfege: '', key: 'e' },
+          { id: 'E4', midi: 64, black: false, letter: 'E', solfege: 'มี', key: 'd' },
+          { id: 'F4', midi: 65, black: false, letter: 'F', solfege: 'ฟา', key: 'f' },
+          { id: 'Fs4', midi: 66, black: true, letter: 'F♯', solfege: '', key: 't' },
+          { id: 'G4', midi: 67, black: false, letter: 'G', solfege: 'ซอล', key: 'g' },
+          { id: 'Gs4', midi: 68, black: true, letter: 'G♯', solfege: '', key: 'y' },
+          { id: 'A4', midi: 69, black: false, letter: 'A', solfege: 'ลา', key: 'h' },
+          { id: 'As4', midi: 70, black: true, letter: 'A♯', solfege: '', key: 'u' },
+          { id: 'B4', midi: 71, black: false, letter: 'B', solfege: 'ที', key: 'j' },
+          { id: 'C5', midi: 72, black: false, letter: 'C', solfege: 'โด', key: 'k' }
+        ];
+
+        /* ชุดคีย์ที่ใช้ออกทำนอง: id = รหัส, label = ชื่อที่แสดง, keys = รหัสคีย์ที่อยู่ในชุด */
+        var POOLS = [
+          { id: 'penta', label: '5 เสียง', keys: ['C4', 'D4', 'E4', 'G4', 'A4'] },
+          { id: 'major', label: '8 เสียง', keys: ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'] },
+          {
+            id: 'chromatic',
+            label: '13 เสียง',
+            keys: ['C4', 'Cs4', 'D4', 'Ds4', 'E4', 'F4', 'Fs4', 'G4', 'Gs4', 'A4', 'As4', 'B4', 'C5']
+          }
+        ];
+
+        /* ระดับ: id = รหัส, label = ชื่อ, pool = ชุดคีย์ที่ใช้, growStartLen = ความยาวเริ่มต้นของโหมดต่อทำนอง,
+           phraseLen = ความยาวท่อนในโหมดฟังอย่างเดียว, chunkLen = ขนาดท่อนในโหมดเรียนเพลง,
+           tuneLevel = ระดับของเพลงที่เลือกได้ในโหมดเรียนเพลง (ตรงกับช่อง level ของ TUNES) */
+        var LEVELS = [
+          { id: 'easy', label: 'ง่าย', pool: 'penta', growStartLen: 2, phraseLen: 3, chunkLen: 3, tuneLevel: 1 },
+          { id: 'medium', label: 'กลาง', pool: 'major', growStartLen: 3, phraseLen: 4, chunkLen: 4, tuneLevel: 2 },
+          { id: 'hard', label: 'ยาก', pool: 'chromatic', growStartLen: 3, phraseLen: 5, chunkLen: 5, tuneLevel: 3 }
+        ];
+
+        /* โหมดเล่น: id = รหัส, label = ชื่อ, about = คำอธิบายหนึ่งประโยค,
+           needsSound = จำเป็นต้องได้ยินเสียงหรือไม่ (ถ้าเครื่องเล่นเสียงไม่ได้ โหมดนี้จะปิดไว้) */
+        var MODES = [
+          { id: 'grow', label: 'ต่อทำนอง', about: 'ทำนองยาวขึ้นทีละตัว เล่นตามให้ได้ไกลที่สุด', needsSound: false },
+          { id: 'tune', label: 'เรียนเพลง', about: 'เล่นตามทีละท่อน แล้วมาดูว่าเป็นเพลงอะไร', needsSound: false },
+          { id: 'blind', label: 'ฟังอย่างเดียว', about: 'คีย์ไม่มีไฟบอก ต้องใช้หูฟังแล้วเล่นตาม', needsSound: true },
+          { id: 'free', label: 'เล่นอิสระ', about: 'กดคีย์เล่นได้ตามใจ ไม่มีคะแนน', needsSound: false }
+        ];
+
+        /* เพลง: id = รหัส, title = ชื่อเพลง, by = ที่มาหรือผู้แต่ง, level = ระดับ 1-3, bpm = จังหวะต่อนาที,
+           notes = ตัวโน้ตต่อกันด้วยช่องว่าง แต่ละตัวเขียนเป็น "รหัสคีย์:จำนวนจังหวะ"
+           (เพิ่มเพลงได้ด้วยการเพิ่มหนึ่งบรรทัด) ทุกเพลงเป็นสมบัติสาธารณะ
+           และเรียบเรียงให้อยู่ในคีย์ C เพื่อเล่นได้ด้วยคีย์ขาว */
+        var TUNES = [
+          {
+            id: 'scale',
+            title: 'บันไดเสียง C เมเจอร์',
+            by: 'แบบฝึกพื้นฐาน',
+            level: 1,
+            bpm: 100,
+            notes: 'C4:1 D4:1 E4:1 F4:1 G4:1 A4:1 B4:1 C5:2'
+          },
+          {
+            id: 'hotcross',
+            title: 'Hot Cross Buns',
+            by: 'เพลงพื้นบ้านอังกฤษ',
+            level: 1,
+            bpm: 100,
+            notes:
+              'E4:1 D4:1 C4:2 E4:1 D4:1 C4:2 C4:0.5 C4:0.5 C4:0.5 C4:0.5 ' +
+              'D4:0.5 D4:0.5 D4:0.5 D4:0.5 E4:1 D4:1 C4:2'
+          },
+          {
+            id: 'mary',
+            title: 'Mary Had a Little Lamb',
+            by: 'เพลงเด็กอเมริกัน',
+            level: 1,
+            bpm: 108,
+            notes: 'E4:1 D4:1 C4:1 D4:1 E4:1 E4:1 E4:2 D4:1 D4:1 D4:2 E4:1 G4:1 G4:2'
+          },
+          {
+            id: 'lune',
+            title: 'Au clair de la lune',
+            by: 'เพลงพื้นบ้านฝรั่งเศส',
+            level: 1,
+            bpm: 100,
+            notes: 'C4:1 C4:1 C4:1 D4:1 E4:2 D4:2 C4:1 E4:1 D4:1 D4:1 C4:4'
+          },
+          {
+            id: 'twinkle',
+            title: 'Twinkle, Twinkle, Little Star',
+            by: 'ทำนองฝรั่งเศส Ah! vous dirai-je, maman',
+            level: 2,
+            bpm: 100,
+            notes: 'C4:1 C4:1 G4:1 G4:1 A4:1 A4:1 G4:2 F4:1 F4:1 E4:1 E4:1 D4:1 D4:1 C4:2'
+          },
+          {
+            id: 'frere',
+            title: 'Frère Jacques',
+            by: 'เพลงพื้นบ้านฝรั่งเศส',
+            level: 2,
+            bpm: 108,
+            notes: 'C4:1 D4:1 E4:1 C4:1 C4:1 D4:1 E4:1 C4:1 E4:1 F4:1 G4:2 E4:1 F4:1 G4:2'
+          },
+          {
+            id: 'lightly',
+            title: 'Lightly Row',
+            by: 'เพลงพื้นบ้านเยอรมัน',
+            level: 2,
+            bpm: 108,
+            notes: 'G4:1 E4:1 E4:2 F4:1 D4:1 D4:2 C4:1 D4:1 E4:1 F4:1 G4:1 G4:1 G4:2'
+          },
+          {
+            id: 'ode',
+            title: 'Ode to Joy',
+            by: 'เบโทเฟน ซิมโฟนีหมายเลข 9',
+            level: 2,
+            bpm: 112,
+            notes: 'E4:1 E4:1 F4:1 G4:1 G4:1 F4:1 E4:1 D4:1 C4:1 C4:1 D4:1 E4:1 E4:1.5 D4:0.5 D4:2'
+          },
+          {
+            id: 'jingle',
+            title: 'Jingle Bells',
+            by: 'เจมส์ เพียร์พอนต์',
+            level: 2,
+            bpm: 120,
+            notes: 'E4:1 E4:1 E4:2 E4:1 E4:1 E4:2 E4:1 G4:1 C4:1.5 D4:0.5 E4:4'
+          },
+          {
+            id: 'london',
+            title: 'London Bridge',
+            by: 'เพลงพื้นบ้านอังกฤษ',
+            level: 3,
+            bpm: 112,
+            notes: 'G4:1.5 A4:0.5 G4:1 F4:1 E4:1 F4:1 G4:2 D4:1 E4:1 F4:2 E4:1 F4:1 G4:2'
+          },
+          {
+            id: 'row',
+            title: 'Row, Row, Row Your Boat',
+            by: 'เพลงพื้นบ้านอเมริกัน',
+            level: 3,
+            bpm: 100,
+            notes: 'C4:1.5 C4:1.5 C4:1 D4:0.5 E4:1.5 E4:1 D4:0.5 E4:1 F4:0.5 G4:3'
+          },
+          {
+            id: 'spring',
+            title: 'Spring จาก The Four Seasons',
+            by: 'วีวัลดี',
+            level: 3,
+            bpm: 100,
+            notes: 'C4:0.5 E4:1 E4:1 E4:1 D4:0.5 C4:0.5 G4:3'
+          },
+          {
+            id: 'largo',
+            title: 'Largo จากซิมโฟนีหมายเลข 9',
+            by: 'ดโวชาก',
+            level: 3,
+            bpm: 66,
+            notes: 'E4:1.5 G4:0.5 G4:2 E4:1.5 D4:0.5 C4:2 D4:1.5 E4:0.5 G4:1.5 E4:0.5 D4:4'
+          },
+          {
+            id: 'minuet',
+            title: 'Minuet in G',
+            by: 'เพทโซลด์ (สมุดโน้ตของอันนา มักดาเลนา บาค)',
+            level: 3,
+            bpm: 112,
+            notes:
+              'G4:1 C4:0.5 D4:0.5 E4:0.5 F4:0.5 G4:1 C4:1 C4:1 A4:1 ' +
+              'F4:0.5 G4:0.5 A4:0.5 B4:0.5 C5:1 C4:1 C4:1'
+          }
+        ];
+
+        /* เหรียญ: id = รหัส, name = ชื่อ, hint = วิธีได้, test = ชื่อกฎใน Core.badgeRules,
+           value = ตัวเลขที่กฎใช้เทียบ (เพิ่มเหรียญได้ด้วยการเพิ่มหนึ่งบรรทัดที่ใช้กฎเดิมแต่เปลี่ยนตัวเลข) */
+        var BADGES = [
+          { id: 'firstEcho', name: 'เสียงสะท้อนแรก', hint: 'เล่นตามถูกครั้งแรก', test: 'roundsAtLeast', value: 1 },
+          { id: 'len8', name: 'ความจำยาว', hint: 'ต่อทำนองได้ยาว 8 ตัว', test: 'growLengthAtLeast', value: 8 },
+          { id: 'len12', name: 'ความจำนักดนตรี', hint: 'ต่อทำนองได้ยาว 12 ตัว', test: 'growLengthAtLeast', value: 12 },
+          {
+            id: 'cleanTune',
+            name: 'ไม่พลาดสักท่อน',
+            hint: 'เรียนเพลงจบโดยถูกทุกท่อนในครั้งแรก',
+            test: 'tuneAllFirstTry',
+            value: 1
+          },
+          {
+            id: 'goodEar',
+            name: 'หูดี',
+            hint: 'ผ่านโหมดฟังอย่างเดียว 6 ท่อนขึ้นไป',
+            test: 'blindSolvedAtLeast',
+            value: 6
+          },
+          { id: 'tunes5', name: 'สมุดเพลงเริ่มหนา', hint: 'เรียนเพลงได้ 5 เพลง', test: 'learnedAtLeast', value: 5 },
+          { id: 'allTunes', name: 'ครบทุกเพลง', hint: 'เรียนเพลงได้ครบทุกเพลง', test: 'learnedAll', value: 1 }
+        ];
+
+        /* ข้อความทั้งหมดที่ผู้เล่นเห็น (ภาษาไทย) แก้คำได้ที่นี่โดยไม่ต้องแตะส่วนอื่น
+           {ชื่อ} ในข้อความคือช่องที่โปรแกรมเติมค่าให้ */
+        var TEXT = {
+          title: 'เล่นตามทำนอง',
+          homePitch: 'ฟังทำนอง จำให้ได้ แล้วเล่นตามบนคีย์บอร์ด',
+          learnedLine: 'เรียนเพลงได้แล้ว {n} จาก {m} เพลง',
+          btnSongbook: 'สมุดเพลง',
+          mysteryTune: 'เพลงปริศนา {n}',
+          btnRandomTune: 'สุ่มเพลง',
+          keyLabelsLabel: 'ชื่อบนคีย์',
+          keyLabelsNone: 'ไม่แสดง',
+          keyLabelsLetters: 'C D E',
+          keyLabelsSolfege: 'โด เร มี',
+          keyLabel: 'คีย์ {name}',
+          statusListen: 'ฟังก่อน',
+          statusPlay: 'ถึงตาคุณ เล่นตามเลย',
+          statusShown: 'ดูอีกครั้งช้า ๆ',
+          btnReplay: 'ฟังอีกครั้ง',
+          replaysLeft: 'เหลือ {n} ครั้ง',
+          hudLives: 'ชีวิต {n}',
+          hudLength: 'ยาว {n} ตัว',
+          phraseLabel: 'ท่อน {i} จาก {n}',
+          wrongNote: 'ยังไม่ใช่ ลองฟังอีกครั้ง',
+          tuneCardTitle: 'เพลงนี้คือ {title}',
+          tuneCardBy: '{by}',
+          tuneLearnedLine: 'เก็บเข้าสมุดเพลงแล้ว',
+          tuneNotYetLine: 'ยังไม่ผ่าน ลองเล่นเพลงนี้อีกรอบ',
+          btnListen: 'ฟัง',
+          lastNote: '{solfege} ({letter})',
+          resultGrow: 'หมดชีวิตแล้ว',
+          resultTune: 'จบเพลงแล้ว',
+          resultBlind: 'ครบทุกท่อนแล้ว',
+          statLength: 'ต่อได้ยาวที่สุด {n} ตัว',
+          statPhrases: 'ผ่าน {n} จาก {m} ท่อน',
+          statMistakes: 'กดผิด {n} ครั้ง',
+          nextTitle: 'รอบหน้าลองแบบนี้',
+          nextGrow: 'รอบนี้จำได้ {n} ตัว ลองแบ่งทำนองเป็นกลุ่มละสามสี่ตัวแล้วจำเป็นกลุ่ม',
+          nextTuneClean: 'ถูกทุกท่อนตั้งแต่ครั้งแรก ลองเพลงถัดไป',
+          nextTuneRetry: 'ท่อนที่ควรฟังซ้ำ',
+          nextBlind: 'ลองร้องทำนองในใจก่อนกดคีย์แรก',
+          howto1: 'ฟังทำนองและดูคีย์ที่สว่าง',
+          howto2: 'เมื่อถึงตาคุณ กดคีย์ตามลำดับเดิม',
+          howto3: 'โหมดเรียนเพลง เล่นตามทีละท่อนจนจบ แล้วเพลงจะเผยชื่อ',
+          howto4: 'โหมดฟังอย่างเดียว คีย์จะไม่สว่าง ใช้หูหาเสียงเอง',
+          footer: 'เล่นตามทำนอง · สร้างด้วย AI ช่วย · วิชา 3500230',
+          /* ข้อความที่เพิ่มเองสำหรับเกมนี้ (ระบุไว้ใน handoff.md) */
+          tunePickLabel: 'เลือกเพลง',
+          learnedMark: 'เรียนแล้ว',
+          readoutNone: 'ยังไม่ได้กดคีย์',
+          statStars: 'ผลที่ได้: {stars}',
+          tuneUnknownKey: 'ไม่รู้จักคีย์ {id}',
+          tuneBadBeats: 'ความยาวโน้ตต้องเป็นเลขบวก ({token})',
+          tuneTooShort: 'มีโน้ตน้อยกว่า 4 ตัว',
+          tuneSkipped: 'ข้ามเพลง {id}: {problem}',
+          cntKeys: 'คีย์ {n}',
+          cntPools: 'ชุดคีย์ {n}',
+          cntTunes: 'เพลง {n}',
+          cntModes: 'โหมด {n}',
+          cntBadges: 'เหรียญ {n}',
+          cntScreens: 'หน้า {n}',
+          /* ข้อความกลางที่ทุกเกมใช้ร่วมกัน */
+          btnPlay: 'เริ่มเล่น',
+          btnHowto: 'วิธีเล่น',
+          btnClose: 'ปิด',
+          pickMode: 'เลือกโหมด',
+          pickLevel: 'ระดับ',
+          levelEasy: 'ง่าย',
+          levelMedium: 'กลาง',
+          levelHard: 'ยาก',
+          hudScore: 'คะแนน',
+          hudStreak: 'ต่อเนื่อง ×{n}',
+          hudTime: 'เวลา',
+          btnNext: 'ต่อไป',
+          btnQuit: 'ออก',
+          btnQuitConfirm: 'กดอีกครั้งเพื่อออก',
+          btnAgain: 'เล่นอีกครั้ง',
+          btnHome: 'กลับหน้าแรก',
+          bestLine: 'ดีที่สุดที่เคยทำได้ {value}',
+          bestNone: 'ยังไม่มีสถิติ ลองเล่นรอบแรกเลย',
+          newBest: 'สถิติใหม่ของโหมดนี้',
+          stars3: 'ยอดเยี่ยม 3 ดาว',
+          stars2: 'ดีมาก 2 ดาว',
+          stars1: 'ผ่านแล้ว 1 ดาว',
+          badgesTitle: 'เหรียญของฉัน',
+          badgeToast: 'ได้เหรียญ "{name}"',
+          audioNeeded: 'โหมดนี้ต้องใช้เสียง เครื่องนี้ยังเล่นเสียงไม่ได้ ลองโหมดอื่นก่อน',
+          settings: 'ตั้งค่า',
+          volume: 'ระดับเสียง',
+          btnTestSound: 'ทดสอบเสียง',
+          themeLabel: 'ธีม',
+          themeAuto: 'อัตโนมัติ',
+          themeLight: 'สว่าง',
+          themeDark: 'มืด',
+          reduceMotion: 'ลดการเคลื่อนไหว',
+          btnClearData: 'ล้างข้อมูลของเกมนี้',
+          btnClearDataConfirm: 'กดอีกครั้งเพื่อล้างข้อมูล',
+          btnSelfCheck: 'ตรวจระบบ',
+          selfCheckPass: 'ผ่าน {n} จาก {m} ข้อ',
+          selfCheckFail: 'ไม่ผ่าน {k} ข้อ',
+          markPass: 'ผ่าน',
+          markFail: 'ไม่ผ่าน',
+          storageNotice: 'เบราว์เซอร์นี้เก็บสถิติไม่ได้ เกมยังเล่นได้ตามปกติ',
+          /* ข้อความที่เพิ่มเองนอกตารางข้อความกลาง (ระบุไว้ใน handoff.md) */
+          badgeHad: 'ได้แล้ว',
+          badgeNot: 'ยังไม่ได้',
+          badgeAllDone: 'ได้เหรียญใหม่ {n} เหรียญ',
+          extensionLine: 'ส่วนเสริม: {error}',
+          backHome: 'ไปหน้าแรก',
+          storageOk: 'บันทึกได้',
+          storageBlocked: 'บันทึกไม่ได้',
+        };
+        /* ═══════════ โซน B · ตั้งค่า (แก้ได้) ═══════════ */
+        /* ตัวเลขที่ปรับได้ของเกม ชื่อทุกตัวบอกหน่วยไว้ท้ายชื่อ (Ms = มิลลิวินาที, Sec = วินาที, Bpm = จังหวะต่อนาที) */
+        var CONFIG = {
+          /* ค่ากลางที่ทุกเกมใช้ร่วมกัน */
+          masterGain: 0.2, // ระดับเสียงรวมของเครื่องเสียง (ก่อนคูณระดับเสียงจากแถบเลื่อน)
+          defaultVolumePercent: 25, // ระดับเสียงเริ่มต้น (0-100)
+          audioAttackSec: 0.01, // เวลาไล่เสียงขึ้นของแต่ละตัว (วินาที)
+          audioReleaseSec: 0.02, // เวลาไล่เสียงลงของแต่ละตัว (วินาที)
+          toastMs: 2500, // เวลาที่ข้อความสั้น ๆ แสดงอยู่ (มิลลิวินาที)
+          confirmMs: 3000, // เวลาที่ปุ่มยืนยันสองขั้นรออยู่ (มิลลิวินาที)
+          popMs: 600, // เวลาก่อนลบตัวเลขคะแนนที่ลอยขึ้น (มิลลิวินาที)
+          countUpMs: 600, // เวลานับคะแนนขึ้นในหน้าสรุป (มิลลิวินาที)
+          seed: 0, // เมล็ดของตัวสุ่ม (0 = สุ่มใหม่ทุกครั้ง ใส่เลขอื่นเพื่อให้ได้ทำนองชุดเดิมซ้ำ)
+          wave: 'triangle', // รูปคลื่นเสียงของคีย์บอร์ด (sine, triangle, square, sawtooth)
+          growLives: 3, // ชีวิตของโหมดต่อทำนอง (ผิดได้กี่ครั้ง)
+          growBpm: 100, // จังหวะเริ่มต้นของโหมดต่อทำนอง (จังหวะต่อนาที)
+          growBpmStep: 4, // จังหวะที่เพิ่มขึ้นทุก 3 รอบ (จังหวะต่อนาที)
+          growBpmMax: 140, // จังหวะสูงสุดของโหมดต่อทำนอง (จังหวะต่อนาที)
+          growReplays: 1, // จำนวนครั้งที่กด "ฟังอีกครั้ง" ได้ในแต่ละรอบของโหมดต่อทำนอง
+          pointsPerNote: 10, // คะแนนต่อโน้ตหนึ่งตัวที่เล่นตามถูกในโหมดต่อทำนอง
+          cleanRoundBonus: 20, // โบนัสของรอบที่ไม่ผิดเลย คูณจำนวนรอบที่ไม่ผิดติดกัน (สูงสุด 5)
+          blindPhrases: 8, // จำนวนท่อนในหนึ่งเกมของโหมดฟังอย่างเดียว
+          blindReplays: 2, // จำนวนครั้งที่กด "ฟังอีกครั้ง" ได้ในแต่ละท่อนของโหมดฟังอย่างเดียว
+          blindBpm: 90, // จังหวะของโหมดฟังอย่างเดียว (จังหวะต่อนาที)
+          chunkPoints: [100, 50], // คะแนนของท่อนที่ผ่านในครั้งที่ 1 และครั้งที่ 2
+          triesPerChunk: 2, // จำนวนครั้งที่ลองได้ในแต่ละท่อนของโหมดเรียนเพลงและฟังอย่างเดียว
+          learnedRatio: 0.8, // สัดส่วนท่อนที่ต้องผ่านจึงนับว่าเรียนเพลงนั้นได้แล้ว
+          maxLeapSemitones: 7, // ระยะกระโดดมากที่สุดระหว่างโน้ตสองตัวติดกัน (เสียงครึ่งขั้น)
+          noteGapRatio: 0.9, // ส่วนของเวลาที่โน้ตแต่ละตัวส่งเสียงจริง (ที่เหลือเป็นช่องเว้น)
+          litRatio: 0.7, // ส่วนของเวลาเสียงที่คีย์สว่างอยู่ (น้อยกว่า 1 เพื่อให้โน้ตซ้ำตัวเดิมเห็นเป็นแสงกะพริบแยกกัน)
+          afterPlaybackMs: 300, // เวลาพักหลังเล่นทำนองจบ ก่อนถึงตาผู้เล่น (มิลลิวินาที)
+          wrongPauseMs: 500, // เวลาพักหลังกดผิด ก่อนเล่นทำนองซ้ำ (มิลลิวินาที)
+          slowFactor: 0.6, // ตัวคูณจังหวะตอนเฉลยท่อนที่ผ่านไม่ได้ (น้อยกว่า 1 คือช้าลง)
+          keyFlashMs: 250, // เวลาที่คีย์แสดงว่าถูกหรือผิด (มิลลิวินาที)
+          lookaheadMs: 100, // เวลาที่ตั้งเสียงล่วงหน้าตอนเล่นทำนอง (มิลลิวินาที)
+          maxLateMs: 400, // ถ้าหน้าจอค้างเกินเวลานี้ จะข้ามโน้ตที่เลยเวลาไปแล้ว (มิลลิวินาที)
+          keyHeightPx: 150 // ความสูงของคีย์ขาว (พิกเซล)
+        };
+        /* ═══════════ โซน C · แกนเกม (ห้ามแก้) ═══════════ */
+        /* แกนเกม: ฟังก์ชันล้วน ไม่แตะหน้าจอ เสียง หรือที่เก็บข้อมูล ตัวสุ่มส่งเข้ามาจากข้างนอกเพื่อทดสอบซ้ำได้ */
+        var Core = {};
+
+        // สร้างตัวสุ่มที่ให้ผลซ้ำได้เมื่อใช้เมล็ดเดียวกัน (mulberry32) คืนฟังก์ชันที่ให้เลข 0 ถึงน้อยกว่า 1
+        Core.makeRng = function (seed) {
+          var state = seed >>> 0;
+          return function () {
+            state = (state + 0x6d2b79f5) >>> 0;
+            var x = state;
+            x = Math.imul(x ^ (x >>> 15), x | 1);
+            x ^= x + Math.imul(x ^ (x >>> 7), x | 61);
+            return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+          };
+        };
+
+        // หาคีย์จากรหัส ถ้าไม่มีคืนค่าว่าง
+        Core.keyById = function (id) {
+          return (
+            KEYS.filter(function (key) {
+              return key.id === id;
+            })[0] || null
+          );
+        };
+
+        // แปลงเลขโน้ต MIDI เป็นความถี่ (เฮิรตซ์)
+        Core.midiToHz = function (midi) {
+          return 440 * Math.pow(2, (midi - 69) / 12);
+        };
+
+        // แปลงข้อความโน้ตของเพลง เช่น "C4:1 D4:0.5" เป็นรายการ { keyId, beats }
+        Core.parseTune = function (notesStr) {
+          return String(notesStr)
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean)
+            .map(function (token) {
+              var parts = token.split(':');
+              return { keyId: parts[0], beats: parts.length > 1 ? Number(parts[1]) : NaN };
+            });
+        };
+
+        // ตรวจเพลง คืนรายการปัญหา (ว่างคือใช้ได้): ไม่รู้จักคีย์ ความยาวโน้ตไม่ใช่เลขบวก หรือมีโน้ตน้อยกว่า 4 ตัว
+        Core.validateTune = function (tune, keys) {
+          var problems = [];
+          tune.forEach(function (note) {
+            if (!keys.some(function (key) { return key.id === note.keyId; })) {
+              problems.push(fmt(TEXT.tuneUnknownKey, { id: note.keyId }));
+            }
+            if (!(note.beats > 0) || !isFinite(note.beats)) {
+              problems.push(fmt(TEXT.tuneBadBeats, { token: note.keyId + ':' + note.beats }));
+            }
+          });
+          if (tune.length < 4) problems.push(TEXT.tuneTooShort);
+          return problems;
+        };
+
+        // เลือกโน้ตตัวถัดไปจากชุดคีย์ โดยไม่ซ้ำกันสามตัวติด
+        // และกระโดดไม่เกิน maxLeapSemitones จากตัวก่อนหน้า (ถ้าชุดคีย์เอื้อ)
+        Core.nextNote = function (sequence, poolIds, rng) {
+          var candidates = poolIds.slice();
+          var count = sequence.length;
+          if (count >= 2 && sequence[count - 1] === sequence[count - 2]) {
+            var repeated = sequence[count - 1];
+            candidates = candidates.filter(function (id) {
+              return id !== repeated;
+            });
+          }
+          if (count >= 1) {
+            var previous = Core.keyById(sequence[count - 1]).midi;
+            var near = candidates.filter(function (id) {
+              return Math.abs(Core.keyById(id).midi - previous) <= CONFIG.maxLeapSemitones;
+            });
+            if (near.length) candidates = near;
+          }
+          return candidates[Math.floor(rng() * candidates.length)];
+        };
+
+        // สร้างท่อนทำนองความยาว len จากชุดคีย์
+        Core.makePhrase = function (len, poolIds, rng) {
+          var phrase = [];
+          for (var i = 0; i < len; i++) phrase.push(Core.nextNote(phrase, poolIds, rng));
+          return phrase;
+        };
+
+        // แบ่งรายการเป็นกลุ่มละ size ตัว ถ้ากลุ่มสุดท้ายเหลือตัวเดียวให้รวมเข้ากับกลุ่มก่อนหน้า
+        Core.chunks = function (items, size) {
+          var groups = [];
+          for (var i = 0; i < items.length; i += size) groups.push(items.slice(i, i + size));
+          if (groups.length > 1 && groups[groups.length - 1].length === 1) {
+            var last = groups.pop();
+            groups[groups.length - 1] = groups[groups.length - 1].concat(last);
+          }
+          return groups;
+        };
+
+        // แปลงรายการโน้ต { keyId, beats } เป็นตารางเวลา: เริ่มเมื่อกี่มิลลิวินาที เสียงยาวกี่มิลลิวินาที และเวลารวม
+        Core.schedule = function (items, bpm, gapRatio) {
+          var beatMs = 60000 / bpm;
+          var cursor = 0;
+          var events = items.map(function (item) {
+            var event = { keyId: item.keyId, atMs: cursor, durMs: item.beats * beatMs * gapRatio };
+            cursor += item.beats * beatMs;
+            return event;
+          });
+          return { events: events, totalMs: cursor };
+        };
+
+        // เริ่มตาของผู้เล่นสำหรับทำนองเป้าหมาย (รายการรหัสคีย์)
+        Core.startTurn = function (target) {
+          return { target: target.slice(), index: 0, mistakes: 0 };
+        };
+
+        // ผู้เล่นกดคีย์หนึ่งตัว คืนตาใหม่ (ไม่แก้ของเดิม) และผล 'progress' 'complete' หรือ 'wrong'
+        // (กดผิดไม่ขยับตำแหน่ง)
+        Core.press = function (turn, keyId) {
+          if (keyId !== turn.target[turn.index]) {
+            return {
+              turn: { target: turn.target, index: turn.index, mistakes: turn.mistakes + 1 },
+              outcome: 'wrong'
+            };
+          }
+          var next = { target: turn.target, index: turn.index + 1, mistakes: turn.mistakes };
+          return { turn: next, outcome: next.index >= turn.target.length ? 'complete' : 'progress' };
+        };
+
+        // จังหวะของรอบที่ round (เริ่มรอบที่ 1) เพิ่มทุก 3 รอบ และไม่เกินค่าสูงสุด
+        Core.growTempo = function (round, config) {
+          var steps = Math.floor((round - 1) / 3);
+          return Math.min(config.growBpmMax, config.growBpm + steps * config.growBpmStep);
+        };
+
+        // คะแนนของรอบในโหมดต่อทำนอง: ความยาว × คะแนนต่อโน้ต + โบนัสรอบที่ไม่ผิด × จำนวนรอบที่ไม่ผิดติดกัน (สูงสุด 5)
+        Core.growRoundScore = function (length, cleanStreak, config) {
+          return length * config.pointsPerNote + config.cleanRoundBonus * Math.min(5, cleanStreak);
+        };
+
+        // คะแนนของท่อนที่ผ่านในครั้งที่ tryNumber (เริ่มที่ 1) เกินจำนวนครั้งที่ให้คืน 0
+        Core.chunkScore = function (tryNumber, config) {
+          return config.chunkPoints[tryNumber - 1] || 0;
+        };
+
+        // เรียนเพลงได้แล้วหรือไม่: results คือรายการเลขครั้งที่ผ่านของแต่ละท่อน (0 = ไม่ผ่าน)
+        Core.tuneLearned = function (results, config) {
+          if (!results.length) return false;
+          var solved = results.filter(function (tries) {
+            return tries > 0;
+          }).length;
+          return solved / results.length >= config.learnedRatio;
+        };
+
+        // ดาวของผลเกม: โหมดต่อทำนองดูความยาว โหมดอื่นดูท่อนที่ผ่าน (result.solved, result.total, result.firstTry)
+        Core.stars = function (mode, result) {
+          if (mode === 'grow') {
+            if (result.length >= 10) return 3;
+            return result.length >= 6 ? 2 : 1;
+          }
+          if (result.total > 0 && result.firstTry === result.total) return 3;
+          return result.total > 0 && result.solved / result.total >= 0.7 ? 2 : 1;
+        };
+
+        // ผลใหม่ดีกว่าสถิติที่เก็บไว้หรือไม่ (ผล 0 คะแนนไม่นับเป็นสถิติใหม่)
+        Core.isBetter = function (result, old) {
+          if (!old || typeof old !== 'object') return result.score > 0;
+          return result.score > old.score;
+        };
+
+        // กฎของเหรียญ: แต่ละกฎรับ (ตัวเลขของเหรียญ, ผลของเกมที่เพิ่งจบ, สถิติ, ข้อมูล) แล้วตอบว่าได้เหรียญหรือไม่
+        Core.badgeRules = {
+          roundsAtLeast: function (value, result, stats) {
+            return stats.rounds >= value;
+          },
+          growLengthAtLeast: function (value, result) {
+            return result.mode === 'grow' && result.length >= value;
+          },
+          tuneAllFirstTry: function (value, result) {
+            return result.mode === 'tune' && result.total > 0 && result.firstTry === result.total;
+          },
+          blindSolvedAtLeast: function (value, result) {
+            return result.mode === 'blind' && result.solved >= value;
+          },
+          learnedAtLeast: function (value, result, stats) {
+            return stats.learned.length >= value;
+          },
+          learnedAll: function (value, result, stats, data) {
+            return data.TUNES.every(function (tune) {
+              return stats.learned.indexOf(tune.id) !== -1;
+            });
+          }
+        };
+
+        // เล่นเกมจำลองด้วยตัวสุ่มที่กำหนด คืนผลเหมือนเหตุการณ์ gameEnd (ใช้ในการตรวจระบบ ไม่ใช้กับเกมจริง)
+        // level คือวัตถุระดับ (เหมือนในตาราง LEVELS) และ config คือชุดตัวเลขที่ใช้คิดคะแนน
+        // grow: ผ่านทุกรอบจนถึงรอบที่ 6 แล้วผิดครบสามครั้ง · tune: ผ่านทุกท่อนยกเว้นท่อนแรกต้องลองสองครั้ง
+        // blind: ผ่านทุกท่อนในครั้งแรก
+        Core.scriptedGame = function (mode, level, seed, config, tuneNotes) {
+          var pool = POOLS.filter(function (item) {
+            return item.id === level.pool;
+          })[0].keys;
+          var rng = Core.makeRng(seed);
+          var result = {
+            mode: mode,
+            level: level.id,
+            tuneId: null,
+            score: 0,
+            stars: 1,
+            length: 0,
+            solved: 0,
+            mistakes: 0
+          };
+          if (mode === 'grow') {
+            var sequence = Core.makePhrase(level.growStartLen, pool, rng);
+            var clean = 0;
+            for (var round = 1; round <= 5; round++) {
+              clean += 1;
+              result.score += Core.growRoundScore(sequence.length, clean, config);
+              result.length = sequence.length;
+              result.solved += 1;
+              sequence.push(Core.nextNote(sequence, pool, rng));
+            }
+            result.mistakes = config.growLives;
+            result.stars = Core.stars('grow', result);
+            return result;
+          }
+          var phrases;
+          if (mode === 'tune') {
+            phrases = Core.chunks(Core.parseTune(tuneNotes), level.chunkLen);
+          } else {
+            phrases = [];
+            for (var i = 0; i < config.blindPhrases; i++) phrases.push(Core.makePhrase(level.phraseLen, pool, rng));
+          }
+          var tries = phrases.map(function (phrase, index) {
+            return mode === 'tune' && index === 0 ? 2 : 1;
+          });
+          result.total = phrases.length;
+          result.solved = tries.length;
+          result.firstTry = tries.filter(function (n) {
+            return n === 1;
+          }).length;
+          result.mistakes = tries.length - result.firstTry;
+          tries.forEach(function (n) {
+            result.score += Core.chunkScore(n, config);
+          });
+          result.stars = Core.stars(mode, result);
+          return result;
+        };
+
+        /* ── ข้อสอบของปุ่ม "ตรวจระบบ": ทดสอบแกนเกมโดยไม่แตะสถานะของเกมที่กำลังเล่น ── */
+
+        // เทียบค่าสองค่า ถ้าไม่เท่ากันให้หยุดพร้อมข้อความบอกว่าได้อะไรและควรได้อะไร
+        function same(actual, expected, label) {
+          if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+            var detail = 'ได้ ' + JSON.stringify(actual) + ' ควรเป็น ' + JSON.stringify(expected);
+            throw new Error((label ? label + ': ' : '') + detail);
+          }
+        }
+
+        // ตรวจเงื่อนไข ถ้าไม่เป็นจริงให้หยุดพร้อมข้อความ
+        function check(condition, label) {
+          if (!condition) throw new Error(label);
+        }
+
+        // รหัสคีย์ทั้งหมดของชุดคีย์
+        function poolKeys(poolId) {
+          return POOLS.filter(function (pool) {
+            return pool.id === poolId;
+          })[0].keys;
+        }
+
+        // ตัวเลขตั้งต้นของสเปกสำหรับข้อสอบที่คิดคะแนนและจังหวะ ใช้ชุดนี้เสมอ
+        // เพื่อให้การปรับตัวเลขในโซน B ไม่ทำให้ "ตรวจระบบ" ไม่ผ่านโดยไม่จำเป็น
+        var SPEC_CONFIG = {
+          growBpm: 100,
+          growBpmStep: 4,
+          growBpmMax: 140,
+          pointsPerNote: 10,
+          cleanRoundBonus: 20,
+          chunkPoints: [100, 50],
+          learnedRatio: 0.8,
+          blindPhrases: 8,
+          growLives: 3
+        };
+
+        // ระดับตัวอย่างสำหรับข้อสอบที่ต้องใช้ระดับ (ไม่ผูกกับตาราง LEVELS ที่นิสิตแก้ได้)
+        var SPEC_LEVEL = { id: 'spec', pool: 'major', growStartLen: 2, phraseLen: 4, chunkLen: 3, tuneLevel: 1 };
+
+        // ชุดข้อสอบแกนเกม แต่ละข้อมีชื่อภาษาไทยและฟังก์ชัน run ที่หยุดเมื่อไม่ผ่าน
+        var CORE_TESTS = [
+          {
+            name: 'แปลงโน้ตของเพลงได้ถูก และเพลงทุกเพลงใช้ได้',
+            run: function () {
+              var ode = 'E4:1 E4:1 F4:1 G4:1 G4:1 F4:1 E4:1 D4:1 C4:1 C4:1 D4:1 E4:1 E4:1.5 D4:0.5 D4:2';
+              var notes = Core.parseTune(ode);
+              same(notes.length, 15);
+              same(
+                notes.reduce(function (sum, note) {
+                  return sum + note.beats;
+                }, 0),
+                16
+              );
+              TUNES.forEach(function (tune) {
+                same(Core.validateTune(Core.parseTune(tune.notes), KEYS), [], tune.id);
+              });
+              function problemsOf(notes) {
+                return Core.validateTune(Core.parseTune(notes), KEYS).length;
+              }
+              check(problemsOf('C4:1 D4:1 E4:1 X9:1') > 0, 'ต้องปฏิเสธคีย์ที่ไม่มี');
+              check(problemsOf('C4:1 D4:1 E4:1 F4:0') > 0, 'ต้องปฏิเสธความยาว 0');
+              check(problemsOf('C4:1 D4:1') > 0, 'ต้องปฏิเสธเพลงสั้นเกินไป');
+            }
+          },
+          {
+            name: 'ความถี่ของโน้ต',
+            run: function () {
+              same(Core.midiToHz(69), 440);
+              check(Math.abs(Core.midiToHz(60) - 261.63) < 0.01, 'C4 ควรเป็น 261.63');
+              same(KEYS.length, 13);
+            }
+          },
+          {
+            name: 'โน้ตตัวถัดไปไม่ซ้ำสามตัวติด อยู่ในชุดคีย์ และกระโดดไม่เกินกำหนด',
+            run: function () {
+              POOLS.forEach(function (pool) {
+                var rng = Core.makeRng(31);
+                var sequence = [];
+                for (var i = 0; i < 500; i++) {
+                  sequence.push(Core.nextNote(sequence, pool.keys, rng));
+                  var n = sequence.length;
+                  check(pool.keys.indexOf(sequence[n - 1]) !== -1, pool.id + ' ออกนอกชุดคีย์');
+                  if (n >= 3) {
+                    var triple = sequence[n - 1] === sequence[n - 2] && sequence[n - 2] === sequence[n - 3];
+                    check(!triple, pool.id + ' ซ้ำสามตัวติด');
+                  }
+                  if (n >= 2) {
+                    var leap = Math.abs(Core.keyById(sequence[n - 1]).midi - Core.keyById(sequence[n - 2]).midi);
+                    check(leap <= CONFIG.maxLeapSemitones, pool.id + ' กระโดด ' + leap);
+                  }
+                }
+              });
+            }
+          },
+          {
+            name: 'ท่อนที่สร้างซ้ำได้เมื่อใช้เมล็ดเดิมและยาวตามที่ขอ',
+            run: function () {
+              var keys = poolKeys('major');
+              var a = Core.makePhrase(6, keys, Core.makeRng(5));
+              same(a, Core.makePhrase(6, keys, Core.makeRng(5)));
+              same(a.length, 6);
+            }
+          },
+          {
+            name: 'แบ่งท่อนเป็นกลุ่ม และรวมกลุ่มท้ายที่เหลือตัวเดียว',
+            run: function () {
+              function sizes(count, size) {
+                var items = [];
+                for (var i = 0; i < count; i++) items.push(i);
+                return Core.chunks(items, size).map(function (group) {
+                  return group.length;
+                });
+              }
+              same(sizes(13, 4), [4, 4, 5]);
+              same(sizes(12, 4), [4, 4, 4]);
+              same(sizes(7, 3), [3, 4]);
+            }
+          },
+          {
+            name: 'ตารางเวลาของโน้ตที่ 120 จังหวะต่อนาที',
+            run: function () {
+              var plan = Core.schedule([{ keyId: 'C4', beats: 1 }, { keyId: 'D4', beats: 1 }], 120, 0.9);
+              same(plan.events[0].atMs, 0);
+              same(plan.events[1].atMs, 500);
+              same(plan.events[0].durMs, 450);
+              same(plan.totalMs, 1000);
+              same(Core.schedule([{ keyId: 'C4', beats: 1.5 }], 120, 0.9).totalMs, 750);
+            }
+          },
+          {
+            name: 'กดคีย์ตามลำดับ: ถูกเดินหน้า ผิดไม่ขยับและนับผิด',
+            run: function () {
+              var turn = Core.startTurn(['C4', 'D4']);
+              var first = Core.press(turn, 'C4');
+              same(first.outcome, 'progress');
+              var wrong = Core.press(first.turn, 'E4');
+              same(wrong.outcome, 'wrong');
+              same(wrong.turn.index, 1);
+              same(wrong.turn.mistakes, 1);
+              same(Core.press(first.turn, 'D4').outcome, 'complete');
+              same(turn.index, 0, 'ต้องไม่แก้ตาเดิม');
+            }
+          },
+          {
+            name: 'จังหวะ คะแนนรอบ และคะแนนท่อน',
+            run: function () {
+              same([1, 3, 4, 7, 900].map(function (round) {
+                return Core.growTempo(round, SPEC_CONFIG);
+              }), [100, 100, 104, 108, 140]);
+              same(Core.growRoundScore(5, 1, SPEC_CONFIG), 70);
+              same(Core.growRoundScore(5, 9, SPEC_CONFIG), 50 + 20 * 5);
+              same([1, 2, 3].map(function (n) {
+                return Core.chunkScore(n, SPEC_CONFIG);
+              }), [100, 50, 0]);
+            }
+          },
+          {
+            name: 'เรียนเพลงได้เมื่อผ่านอย่างน้อยร้อยละ 80 และให้ดาวถูกต้อง',
+            run: function () {
+              same(Core.tuneLearned([1, 1, 2, 1, 0], SPEC_CONFIG), true);
+              same(Core.tuneLearned([1, 0, 2, 0, 0], SPEC_CONFIG), false);
+              same(Core.stars('grow', { length: 10 }), 3);
+              same(Core.stars('grow', { length: 6 }), 2);
+              same(Core.stars('grow', { length: 2 }), 1);
+              same(Core.stars('tune', { total: 5, solved: 5, firstTry: 5 }), 3);
+              same(Core.stars('tune', { total: 10, solved: 7, firstTry: 3 }), 2);
+              same(Core.stars('blind', { total: 10, solved: 6, firstTry: 0 }), 1);
+            }
+          },
+          {
+            name: 'กฎของเหรียญตอบได้ทั้งจริงและไม่จริง',
+            run: function () {
+              var rules = Core.badgeRules;
+              var stats = { rounds: 1, learned: ['scale', 'mary'] };
+              same([rules.roundsAtLeast(1, null, stats), rules.roundsAtLeast(2, null, stats)], [true, false]);
+              function grow(length) {
+                return { mode: 'grow', length: length };
+              }
+              same([rules.growLengthAtLeast(8, grow(8)), rules.growLengthAtLeast(8, grow(7))], [true, false]);
+              same(rules.growLengthAtLeast(8, { mode: 'blind', length: 9 }), false);
+              function tune(firstTry) {
+                return { mode: 'tune', total: 4, firstTry: firstTry };
+              }
+              same([rules.tuneAllFirstTry(1, tune(4)), rules.tuneAllFirstTry(1, tune(3))], [true, false]);
+              function blind(solved) {
+                return { mode: 'blind', solved: solved };
+              }
+              same([rules.blindSolvedAtLeast(6, blind(6)), rules.blindSolvedAtLeast(6, blind(5))], [true, false]);
+              same([rules.learnedAtLeast(2, null, stats), rules.learnedAtLeast(3, null, stats)], [true, false]);
+              var all = {
+                learned: TUNES.map(function (item) {
+                  return item.id;
+                })
+              };
+              var data = { TUNES: TUNES };
+              same([rules.learnedAll(1, null, all, data), rules.learnedAll(1, null, stats, data)], [true, false]);
+              same(rules.learnedAll(1, null, { learned: [] }, { TUNES: [{ id: 'a' }] }), false);
+              BADGES.forEach(function (badge) {
+                check(typeof rules[badge.test] === 'function', 'ไม่มีกฎ ' + badge.test);
+              });
+            }
+          },
+          {
+            name: 'เกมจำลองครบทั้งสามโหมดและได้ผลซ้ำเดิม',
+            run: function () {
+              var grow = Core.scriptedGame('grow', SPEC_LEVEL, 3, SPEC_CONFIG);
+              same(grow.length, 6);
+              same(grow.solved, 5);
+              same(grow, Core.scriptedGame('grow', SPEC_LEVEL, 3, SPEC_CONFIG));
+              var mary = 'E4:1 D4:1 C4:1 D4:1 E4:1 E4:1 E4:2 D4:1 D4:1 D4:2 E4:1 G4:1 G4:2';
+              var tune = Core.scriptedGame('tune', SPEC_LEVEL, 3, SPEC_CONFIG, mary);
+              same(tune.total, 4);
+              same(tune.firstTry, 3);
+              same(tune.score, 100 + 50 + 100 + 100);
+              var blind = Core.scriptedGame('blind', SPEC_LEVEL, 3, SPEC_CONFIG);
+              same(blind.total, SPEC_CONFIG.blindPhrases);
+              same(blind.score, SPEC_CONFIG.blindPhrases * 100);
+              same(blind.stars, 3);
+            }
+          },
+          {
+            name: 'นับข้อมูลในตารางของเกม',
+            run: function () {
+              check(POOLS.length > 0 && LEVELS.length > 0 && MODES.length > 0, 'ตารางข้อมูลว่าง');
+              LEVELS.forEach(function (level) {
+                check(poolKeys(level.pool).length >= 3, 'ชุดคีย์ของระดับ ' + level.id + ' น้อยกว่า 3 ตัว');
+              });
+            }
+          }
+        ];
+        /* ═══════════ โซน D · หน้าจอและเสียง (ห้ามแก้ถ้าไม่จำเป็น) ═══════════ */
+        /* ── ส่วนกลางของหน้าจอ: ทุกเกมใช้ชุดฟังก์ชันนี้ร่วมกัน ── */
+        var handlers = {};
+        var errors = [];
+        var warned = {};
+        var memory = {};
+        var storageOK = true;
+        var activeScreen = 'home';
+        var toastTimer = null;
+        var confirmTimers = {};
+        var audio = null;
+        var master = null;
+        var audioFailed = false;
+        var stats = null;
+        var settings = null;
+
+        // คืนองค์ประกอบตามรหัสในหน้าเว็บ
+        function byId(id) {
+          return document.getElementById(id);
+        }
+
+        // ทำสำเนาข้อมูลธรรมดา (ตัวเลข ข้อความ รายการ) เพื่อไม่ให้แก้ของเดิมโดยไม่ตั้งใจ
+        function clone(value) {
+          return JSON.parse(JSON.stringify(value));
+        }
+
+        // แทนที่ {ชื่อ} ในข้อความด้วยค่าที่ให้มา
+        function fmt(text, vars) {
+          return String(text).replace(/\{(\w+)\}/g, function (all, name) {
+            return vars && vars[name] !== undefined ? vars[name] : all;
+          });
+        }
+
+        // ดึงข้อความภาษาไทยจากตาราง TEXT (ถ้าไม่มีรหัสนั้น คืนรหัสกลับไปให้เห็นว่าขาด)
+        function t(key, vars) {
+          return TEXT[key] === undefined ? key : fmt(TEXT[key], vars);
+        }
+
+        // สร้างองค์ประกอบ HTML พร้อมคุณสมบัติและลูก
+        function el(tag, props, kids) {
+          var node = document.createElement(tag);
+          Object.keys(props || {}).forEach(function (name) {
+            if (name === 'text') {
+              node.textContent = props.text;
+            } else if (name === 'on') {
+              Object.keys(props.on).forEach(function (eventName) {
+                node.addEventListener(eventName, props.on[eventName]);
+              });
+            } else {
+              node.setAttribute(name, props[name]);
+            }
+          });
+          (kids || []).forEach(function (kid) {
+            if (kid) node.appendChild(kid);
+          });
+          return node;
+        }
+
+        // สร้างองค์ประกอบ SVG พร้อมคุณสมบัติและลูก
+        function svg(tag, attrs, kids) {
+          var node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+          Object.keys(attrs || {}).forEach(function (name) {
+            if (name === 'text') {
+              node.textContent = attrs.text;
+            } else {
+              node.setAttribute(name, attrs[name]);
+            }
+          });
+          (kids || []).forEach(function (kid) {
+            if (kid) node.appendChild(kid);
+          });
+          return node;
+        }
+
+        // ใส่ข้อความภาษาไทยลงในองค์ประกอบที่มี data-t และ data-t-aria
+        function applyText() {
+          document.querySelectorAll('[data-t]').forEach(function (node) {
+            node.textContent = t(node.getAttribute('data-t'));
+          });
+          document.querySelectorAll('[data-t-aria]').forEach(function (node) {
+            node.setAttribute('aria-label', t(node.getAttribute('data-t-aria')));
+          });
+        }
+
+        // อ่านค่าจากเบราว์เซอร์ ถ้าเก็บไม่ได้ใช้ค่าในหน่วยความจำแทน
+        function read(key, fallback) {
+          var raw = null;
+          try {
+            raw = localStorage.getItem(key);
+          } catch (e) {
+            storageOK = false;
+            return Object.prototype.hasOwnProperty.call(memory, key) ? memory[key] : fallback;
+          }
+          if (raw === null) return fallback;
+          try {
+            return JSON.parse(raw);
+          } catch (e) {
+            return fallback;
+          }
+        }
+
+        // เก็บค่าในหน่วยความจำและในเบราว์เซอร์
+        function write(key, value) {
+          memory[key] = value;
+          try {
+            localStorage.setItem(key, JSON.stringify(value));
+          } catch (e) {
+            storageOK = false;
+          }
+          showStorageNotice();
+        }
+
+        // แสดงข้อความครั้งเดียวเมื่อเบราว์เซอร์เก็บสถิติไม่ได้
+        function showStorageNotice() {
+          byId('notice').textContent = storageOK ? '' : t('storageNotice');
+        }
+
+        // ลงทะเบียนผู้รับเหตุการณ์ของเกม
+        function on(name, handler) {
+          (handlers[name] || (handlers[name] = [])).push(handler);
+        }
+
+        // ส่งเหตุการณ์ให้ผู้รับ ถ้าส่วนเสริมของนิสิตพังจะจดไว้และเกมเล่นต่อได้
+        function emit(name, detail) {
+          (handlers[name] || []).slice().forEach(function (handler) {
+            try {
+              handler(detail);
+            } catch (e) {
+              var message = String(e);
+              errors.push(message);
+              if (!warned[message]) {
+                warned[message] = true;
+                console.warn(message);
+              }
+              if (!byId('checkResult').hidden) showCheck();
+            }
+          });
+        }
+
+        // เปลี่ยนหน้าจอ ย้ายโฟกัสไปที่หัวเรื่อง และส่งเหตุการณ์ screenChange
+        function showScreen(next) {
+          var from = activeScreen;
+          activeScreen = next;
+          document.querySelectorAll('[data-screen]').forEach(function (screen) {
+            screen.hidden = screen.getAttribute('data-screen') !== next;
+          });
+          var heading = document.querySelector('[data-screen="' + next + '"] h1');
+          if (heading) heading.focus();
+          if (from !== next) emit('screenChange', { from: from, to: next });
+        }
+
+        // แสดงข้อความสั้น ๆ ครั้งละหนึ่งข้อความ
+        function showToast(message) {
+          clearTimeout(toastTimer);
+          var box = byId('toast');
+          box.textContent = message;
+          box.hidden = false;
+          toastTimer = setTimeout(function () {
+            box.hidden = true;
+          }, CONFIG.toastMs);
+        }
+
+        // ปุ่มยืนยันสองขั้น: กดครั้งแรกเปลี่ยนข้อความ กดครั้งที่สองจึงทำจริง (ถ้า skip() เป็นจริงจะทำทันที)
+        function twoStep(button, labelKey, confirmKey, action, skip) {
+          button.addEventListener('click', function () {
+            if (skip && skip()) {
+              action();
+              return;
+            }
+            if (confirmTimers[button.id]) {
+              clearTimeout(confirmTimers[button.id]);
+              delete confirmTimers[button.id];
+              button.textContent = t(labelKey);
+              action();
+              return;
+            }
+            button.textContent = t(confirmKey);
+            confirmTimers[button.id] = setTimeout(function () {
+              delete confirmTimers[button.id];
+              button.textContent = t(labelKey);
+            }, CONFIG.confirmMs);
+          });
+        }
+
+        // ปรับข้อมูลที่เก็บไว้ให้มีรูปแบบเดียวกับค่าเริ่มต้น ส่วนที่เสียหายใช้ค่าเริ่มต้นแทน
+        function sanitize(stored, defaults) {
+          var out = {};
+          Object.keys(defaults).forEach(function (key) {
+            var fallback = defaults[key];
+            var value = stored && typeof stored === 'object' ? stored[key] : undefined;
+            var isObject = fallback !== null && typeof fallback === 'object' && !Array.isArray(fallback);
+            var fits = Array.isArray(fallback)
+              ? Array.isArray(value)
+              : isObject
+                ? value !== null && typeof value === 'object' && !Array.isArray(value)
+                : typeof value === typeof fallback;
+            out[key] = fits ? value : clone(fallback);
+          });
+          return out;
+        }
+
+        // โหลดสถิติและการตั้งค่า ถ้าข้อมูลเสียหายใช้ค่าเริ่มต้น
+        function loadAll() {
+          stats = sanitize(read(STORE.stats, null), STATS_DEFAULT);
+          stats.badges = stats.badges.filter(function (id) {
+            return typeof id === 'string';
+          });
+          settings = sanitize(read(STORE.settings, null), SETTINGS_DEFAULT);
+          settings.volume = Math.max(0, Math.min(100, Number(settings.volume) || 0));
+          if (['auto', 'light', 'dark'].indexOf(settings.theme) === -1) settings.theme = 'auto';
+        }
+
+        // บันทึกสถิติ
+        function saveStats() {
+          write(STORE.stats, stats);
+        }
+
+        // บันทึกการตั้งค่า
+        function saveSettings() {
+          write(STORE.settings, settings);
+        }
+
+        // ใช้ธีมและการลดการเคลื่อนไหวตามที่ตั้งไว้
+        function applyOptions() {
+          var root = document.documentElement;
+          if (settings.theme === 'light' || settings.theme === 'dark') {
+            root.setAttribute('data-theme', settings.theme);
+          } else {
+            root.removeAttribute('data-theme');
+          }
+          root.setAttribute('data-reduce', settings.reduceMotion ? 'true' : 'false');
+        }
+
+        // ถามว่าควรลดการเคลื่อนไหวหรือไม่ (ตั้งในเกมหรือตั้งที่ระบบ)
+        function motionReduced() {
+          var system =
+            typeof window.matchMedia === 'function' &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          return Boolean(settings.reduceMotion || system);
+        }
+
+        // เตรียมเครื่องเสียงหลังผู้เล่นแตะครั้งแรก ถ้าทำไม่ได้ เกมยังเล่นแบบไม่มีเสียงได้
+        function initAudio() {
+          if (audio) {
+            if (audio.resume) audio.resume().catch(function () {});
+            return;
+          }
+          var Context = window.AudioContext || window.webkitAudioContext;
+          if (!Context || audioFailed) return;
+          try {
+            audio = new Context();
+            master = audio.createGain();
+            master.gain.value = CONFIG.masterGain;
+            master.connect(audio.destination);
+            if (audio.resume) audio.resume().catch(function () {});
+          } catch (e) {
+            audio = null;
+            master = null;
+            audioFailed = true;
+          }
+        }
+
+        // ถามว่าเครื่องนี้เล่นเสียงได้หรือไม่
+        function audioAvailable() {
+          return Boolean(window.AudioContext || window.webkitAudioContext) && !audioFailed;
+        }
+
+        // เล่นเสียงหนึ่งตัวตามความถี่ ความยาว และเวลาเริ่ม (วินาทีนับจากตอนนี้)
+        function playTone(hz, durSec, whenSec, wave) {
+          if (!audio || !master) return;
+          try {
+            var level = settings.volume / 100;
+            var start = audio.currentTime + (whenSec || 0);
+            var attack = CONFIG.audioAttackSec;
+            var release = Math.min(CONFIG.audioReleaseSec, durSec / 2);
+            var osc = audio.createOscillator();
+            var gain = audio.createGain();
+            osc.type = wave || 'triangle';
+            osc.frequency.value = hz;
+            gain.gain.setValueAtTime(0, start);
+            gain.gain.linearRampToValueAtTime(level, start + attack);
+            gain.gain.setValueAtTime(level, start + Math.max(attack, durSec - release));
+            gain.gain.linearRampToValueAtTime(0, start + durSec);
+            osc.connect(gain);
+            gain.connect(master);
+            osc.start(start);
+            osc.stop(start + durSec + 0.02);
+          } catch (e) {
+            /* เล่นเสียงไม่ได้ก็เล่นเกมต่อแบบเงียบ */
+          }
+        }
+
+        // ทำให้เวลาเป็นข้อความ เช่น 1:05
+        function formatTime(ms) {
+          var total = Math.max(0, Math.round(ms / 1000));
+          var minutes = Math.floor(total / 60);
+          var seconds = total % 60;
+          return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+        }
+
+        // แสดงตัวเลขคะแนนที่ลอยขึ้นข้างค่าที่เปลี่ยน
+        function popScore(anchor, delta) {
+          if (!anchor || !delta || motionReduced()) return;
+          var pop = el('span', { class: 'score-pop', 'aria-hidden': 'true', text: '+' + delta });
+          anchor.appendChild(pop);
+          setTimeout(function () {
+            if (pop.parentNode) pop.parentNode.removeChild(pop);
+          }, CONFIG.popMs);
+        }
+
+        // นับตัวเลขขึ้นจาก 0 ถึงค่าสุดท้าย ถ้าลดการเคลื่อนไหวให้แสดงค่าสุดท้ายทันที
+        function countUp(node, value) {
+          node.setAttribute('data-value', String(value));
+          if (motionReduced() || value <= 0) {
+            node.textContent = String(value);
+            return;
+          }
+          var steps = 10;
+          var step = 0;
+          node.textContent = '0';
+          var timer = setInterval(function () {
+            step += 1;
+            node.textContent = String(Math.round((value * step) / steps));
+            if (step >= steps) clearInterval(timer);
+          }, CONFIG.countUpMs / steps);
+        }
+
+        // ให้บรรทัดในหน้าสรุปค่อย ๆ ปรากฏตามลำดับ
+        function revealRows(container) {
+          Array.prototype.forEach.call(container.children, function (child, index) {
+            child.style.setProperty('--row', index);
+          });
+          container.classList.remove('is-revealed');
+          setTimeout(function () {
+            container.classList.add('is-revealed');
+          }, 20);
+        }
+
+        // วาดเหรียญหนึ่งเหรียญ เหรียญที่ได้แล้วมีพื้น เหรียญที่ยังไม่ได้เป็นเส้นประ
+        function drawMedal(badge) {
+          var earned = stats.badges.indexOf(badge.id) !== -1;
+          var state = earned ? t('badgeHad') : t('badgeNot');
+          var icon = svg(
+            'svg',
+            {
+              viewBox: '0 0 32 32',
+              role: 'img',
+              class: earned ? 'medal-earned' : 'medal-open',
+              'aria-label': badge.name + ' · ' + badge.hint + ' · ' + state
+            },
+            [
+              svg('path', {
+                d: 'M10 2l6 10l6-10',
+                fill: 'none',
+                stroke: 'currentColor',
+                'stroke-width': 2,
+                'stroke-linejoin': 'round'
+              }),
+              svg('circle', {
+                cx: 16,
+                cy: 20,
+                r: 9,
+                fill: 'none',
+                stroke: 'currentColor',
+                'stroke-width': 2,
+                'stroke-dasharray': earned ? '0' : '3 3'
+              }),
+              earned
+                ? svg('path', {
+                    d: 'M11.5 20l3 3l6-6',
+                    fill: 'none',
+                    stroke: 'currentColor',
+                    'stroke-width': 2,
+                    'stroke-linecap': 'round'
+                  })
+                : null
+            ]
+          );
+          icon.appendChild(svg('title', { text: badge.name + ' · ' + badge.hint }));
+          return icon;
+        }
+
+        // วาดแถวเหรียญบนหน้าแรกและรายการเหรียญ
+        function renderMedals() {
+          var row = byId('homeBadges');
+          row.textContent = '';
+          BADGES.forEach(function (badge) {
+            row.appendChild(drawMedal(badge));
+          });
+          var list = byId('badgeList');
+          list.textContent = '';
+          BADGES.forEach(function (badge) {
+            var earned = stats.badges.indexOf(badge.id) !== -1;
+            var text = el('div', {}, [
+              el('strong', { text: badge.name }),
+              el('div', { class: 'soft small', text: badge.hint + ' · ' + (earned ? t('badgeHad') : t('badgeNot')) })
+            ]);
+            list.appendChild(el('li', {}, [drawMedal(badge), text]));
+          });
+        }
+
+        // ตรวจเหรียญหลังจบเกม แล้วแจ้งเหรียญใหม่ คืนรายการเหรียญใหม่
+        function awardBadges(result) {
+          var fresh = BADGES.filter(function (badge) {
+            if (stats.badges.indexOf(badge.id) !== -1) return false;
+            var rule = Core.badgeRules[badge.test];
+            try {
+              return Boolean(rule && rule(badge.value, result, stats, DATA));
+            } catch (e) {
+              return false;
+            }
+          });
+          fresh.forEach(function (badge) {
+            stats.badges.push(badge.id);
+            emit('badgeEarned', { id: badge.id, name: badge.name });
+          });
+          if (fresh.length) {
+            saveStats();
+            renderMedals();
+            showToast(
+              fresh.length === 1 ? t('badgeToast', { name: fresh[0].name }) : t('badgeAllDone', { n: fresh.length })
+            );
+          }
+          return fresh;
+        }
+
+        // วาดขั้นตอนวิธีเล่น แต่ละขั้นมีรูปเล็ก ๆ กับหนึ่งประโยค
+        function renderHowto() {
+          var list = byId('instructions');
+          list.textContent = '';
+          [1, 2, 3, 4].forEach(function (index) {
+            list.appendChild(el('li', {}, [howtoIcon(index), el('span', { text: t('howto' + index) })]));
+          });
+        }
+
+        // เปิดหน้าวิธีเล่น และจำไว้ว่าเคยเห็นแล้วเมื่อปิด
+        function closeHowto() {
+          if (!stats.seenHowto) {
+            stats.seenHowto = true;
+            saveStats();
+          }
+          showScreen('home');
+        }
+
+        // สรุปผลการตรวจระบบเป็น { passed, failed, results }
+        function runSelfCheck() {
+          var results = CORE_TESTS.map(function (test) {
+            try {
+              test.run();
+              return { name: test.name, ok: true, detail: '' };
+            } catch (e) {
+              return { name: test.name, ok: false, detail: String(e && e.message ? e.message : e) };
+            }
+          });
+          var failed = results.filter(function (item) {
+            return !item.ok;
+          }).length;
+          return { passed: results.length - failed, failed: failed, results: results };
+        }
+
+        // แสดงผลตรวจระบบในหน้าเว็บ ใช้ข้อความ ผ่าน/ไม่ผ่าน ไม่ใช้สีอย่างเดียว
+        function showCheck() {
+          var report = runSelfCheck();
+          var box = byId('checkResult');
+          box.hidden = false;
+          box.textContent = '';
+          box.appendChild(
+            el('p', {
+              class: report.failed ? 'is-fail' : 'is-pass',
+              text: report.failed
+                ? '× ' + t('selfCheckFail', { k: report.failed })
+                : '✓ ' + t('selfCheckPass', { n: report.passed, m: report.results.length })
+            })
+          );
+          var list = el('ul');
+          report.results.forEach(function (item) {
+            var mark = item.ok ? t('markPass') : t('markFail');
+            list.appendChild(el('li', { text: mark + ' · ' + item.name + (item.detail ? ' · ' + item.detail : '') }));
+          });
+          box.appendChild(list);
+          box.appendChild(el('p', { class: 'small', text: countsLine() + ' · ' + storageLine() }));
+          extraCheckLines().forEach(function (line) {
+            box.appendChild(el('p', { class: 'small', text: line }));
+          });
+          errors.forEach(function (message) {
+            box.appendChild(el('p', { class: 'is-fail', text: t('extensionLine', { error: message }) }));
+          });
+        }
+
+        // บอกว่าเบราว์เซอร์เก็บสถิติได้หรือไม่
+        function storageLine() {
+          return storageOK ? t('storageOk') : t('storageBlocked');
+        }
+
+        // ผูกปุ่มและช่องตั้งค่าที่ทุกเกมมีเหมือนกัน
+        function bindSharedControls() {
+          byId('openHowto').addEventListener('click', function () {
+            showScreen('howto');
+          });
+          byId('closeHowto').addEventListener('click', closeHowto);
+          byId('openBadges').addEventListener('click', function () {
+            showScreen('badges');
+          });
+          byId('closeBadges').addEventListener('click', function () {
+            goTo('home');
+          });
+          byId('volume').value = settings.volume;
+          byId('volume').addEventListener('input', function () {
+            settings.volume = Number(this.value);
+            saveSettings();
+          });
+          byId('testSound').addEventListener('click', function () {
+            initAudio();
+            playTone(440, 0.4, 0);
+          });
+          byId('theme').value = settings.theme;
+          byId('theme').addEventListener('change', function () {
+            settings.theme = this.value;
+            applyOptions();
+            saveSettings();
+          });
+          byId('reduce').checked = settings.reduceMotion;
+          byId('reduce').addEventListener('change', function () {
+            settings.reduceMotion = this.checked;
+            applyOptions();
+            saveSettings();
+          });
+          byId('check').addEventListener('click', showCheck);
+          twoStep(byId('clearData'), 'btnClearData', 'btnClearDataConfirm', function () {
+            [STORE.stats, STORE.settings].concat(STORE.extra || []).forEach(function (key) {
+              delete memory[key];
+              try {
+                localStorage.removeItem(key);
+              } catch (e) {
+                storageOK = false;
+              }
+            });
+            loadAll();
+            applyOptions();
+            renderMedals();
+            resetAfterClear();
+          });
+        }
+        /* ── ส่วนเฉพาะของเล่นตามทำนอง ── */
+        var STORE = { stats: 'melody-echo-stats-v1', settings: 'melody-echo-settings-v1' };
+        var STATS_DEFAULT = { best: {}, badges: [], learned: [], rounds: 0, seenHowto: false };
+        var SETTINGS_DEFAULT = {
+          volume: CONFIG.defaultVolumePercent,
+          theme: 'auto',
+          reduceMotion: false,
+          mode: 'grow',
+          level: 'easy',
+          keyLabels: 'letters',
+          wave: CONFIG.wave
+        };
+        var DATA = { KEYS: KEYS, POOLS: POOLS, LEVELS: LEVELS, MODES: MODES, TUNES: TUNES, BADGES: BADGES, TEXT: TEXT };
+        var WAVES = ['sine', 'triangle', 'square', 'sawtooth'];
+        var game = null;
+        var lastResult = null;
+        var chosenTuneId = null;
+        var keyEls = {};
+        var playback = null;
+        var interrupted = null;
+        var frameId = 0;
+        var litTokens = {};
+        var flowTimers = [];
+        var flashTimers = [];
+
+        // ข้อความเพิ่มเติมในหน้าตรวจระบบ: เพลงที่ใช้ไม่ได้และเหตุผล
+        function extraCheckLines() {
+          return TUNES.map(function (tune) {
+            return { tune: tune, problems: Core.validateTune(Core.parseTune(tune.notes), KEYS) };
+          })
+            .filter(function (item) {
+              return item.problems.length > 0;
+            })
+            .map(function (item) {
+              return t('tuneSkipped', { id: item.tune.id, problem: item.problems.join(', ') });
+            });
+        }
+
+        // ข้อความนับจำนวนข้อมูลในตารางของเกม สำหรับแสดงในหน้าตรวจระบบ
+        function countsLine() {
+          var perLevel = LEVELS.map(function (level) {
+            return tunesOfLevel(level).length;
+          }).join('/');
+          return [
+            t('cntKeys', { n: KEYS.length }),
+            t('cntPools', { n: POOLS.length }),
+            t('cntTunes', { n: validTunes().length }) + ' (' + perLevel + ')',
+            t('cntModes', { n: MODES.length }),
+            t('cntBadges', { n: BADGES.length }),
+            t('cntScreens', { n: document.querySelectorAll('[data-screen]').length })
+          ].join(' · ');
+        }
+
+        // รูปประกอบของแต่ละขั้นในหน้าวิธีเล่น
+        function howtoIcon(index) {
+          var line = { fill: 'none', stroke: 'currentColor', 'stroke-width': 2.4, 'stroke-linecap': 'round' };
+          function shape(tag, attrs) {
+            return svg(tag, Object.assign({}, line, attrs));
+          }
+          var parts = [
+            [
+              shape('rect', { x: 8, y: 16, width: 40, height: 28, rx: 3 }),
+              svg('rect', { x: 18, y: 16, width: 8, height: 4, fill: 'currentColor' })
+            ],
+            [
+              shape('path', { d: 'M14 40V20M28 40V12M42 40V26' }),
+              svg('circle', { cx: 28, cy: 12, r: 4, fill: 'currentColor' })
+            ],
+            [shape('path', { d: 'M10 40h36M14 40V24M26 40V14M38 40V30' })],
+            [shape('path', { d: 'M12 40V22M22 40V22M34 40V22M44 40V22' }), shape('path', { d: 'M8 14l10 4' })]
+          ];
+          return svg('svg', { viewBox: '0 0 56 56', 'aria-hidden': 'true' }, parts[index - 1]);
+        }
+
+        // เพลงที่ใช้ได้ (ผ่านการตรวจ) เพลงที่เสียจะถูกข้ามและไปรายงานในหน้าตรวจระบบ
+        function validTunes() {
+          return TUNES.filter(function (tune) {
+            return Core.validateTune(Core.parseTune(tune.notes), KEYS).length === 0;
+          });
+        }
+
+        // เพลงที่ใช้ได้ของระดับนั้น
+        function tunesOfLevel(level) {
+          return validTunes().filter(function (tune) {
+            return tune.level === level.tuneLevel;
+          });
+        }
+
+        // เลขลำดับของเพลงในตาราง TUNES (เริ่มที่ 1) ใช้ตั้งชื่อ "เพลงปริศนา"
+        function tuneNumber(tune) {
+          return TUNES.indexOf(tune) + 1;
+        }
+
+        // เพลงนี้เรียนได้แล้วหรือยัง
+        function isLearned(tune) {
+          return stats.learned.indexOf(tune.id) !== -1;
+        }
+
+        // ชื่อเพลงที่แสดงก่อนเรียน (ปริศนา) และหลังเรียน (ชื่อจริง)
+        function tuneTitle(tune) {
+          return isLearned(tune) ? tune.title : t('mysteryTune', { n: tuneNumber(tune) });
+        }
+
+        // ชุดคีย์ของระดับ (รายการรหัสคีย์)
+        function poolOf(level) {
+          return POOLS.filter(function (pool) {
+            return pool.id === level.pool;
+          })[0].keys;
+        }
+
+        // ระดับนี้ใช้ได้หรือไม่ (ชุดคีย์ต้องมีอย่างน้อย 3 ตัว)
+        function levelUsable(level) {
+          return poolOf(level).length >= 3;
+        }
+
+        // ระดับปัจจุบันที่เลือกบนหน้าแรก
+        function currentLevel() {
+          return (
+            LEVELS.filter(function (level) {
+              return level.id === settings.level;
+            })[0] || LEVELS[0]
+          );
+        }
+
+        // ตรวจว่าโหมดและระดับที่เก็บไว้ยังใช้ได้ ถ้าไม่ได้ใช้ค่าเริ่มต้น
+        function validateChoices() {
+          if (!MODES.some(function (mode) { return mode.id === settings.mode; })) settings.mode = 'grow';
+          var usable = LEVELS.filter(levelUsable);
+          if (!usable.some(function (level) { return level.id === settings.level; })) {
+            settings.level = usable.length ? usable[0].id : LEVELS[0].id;
+          }
+          if (['none', 'letters', 'solfege'].indexOf(settings.keyLabels) === -1) settings.keyLabels = 'letters';
+          if (WAVES.indexOf(settings.wave) === -1) settings.wave = CONFIG.wave;
+          var tunes = tunesOfLevel(currentLevel());
+          var stillThere = tunes.some(function (tune) {
+            return tune.id === chosenTuneId;
+          });
+          if (!stillThere) {
+            var fresh = tunes.filter(function (tune) {
+              return !isLearned(tune);
+            })[0];
+            chosenTuneId = fresh ? fresh.id : tunes.length ? tunes[0].id : null;
+          }
+        }
+
+        // ชื่อโน้ตสำหรับอ่านออกเสียง เช่น "C โด"
+        function keyName(key) {
+          return key.solfege ? key.letter + ' ' + key.solfege : key.letter;
+        }
+
+        // ข้อความบนคีย์ตามที่ตั้งไว้ (ไม่แสดง, ตัวอักษร หรือ โด เร มี)
+        function keyLabelText(key) {
+          if (settings.keyLabels === 'none') return '';
+          if (settings.keyLabels === 'solfege') return key.solfege || key.letter;
+          return key.letter;
+        }
+
+        // สร้างคีย์บอร์ด: คีย์ขาวเรียงแถว คีย์ดำวางทับตรงรอยต่อ
+        function buildKeyboard() {
+          var board = byId('keyboard');
+          board.textContent = '';
+          var whiteIndex = -1;
+          KEYS.forEach(function (key) {
+            if (!key.black) whiteIndex += 1;
+            var button = el('button', {
+              type: 'button',
+              class: 'key ' + (key.black ? 'key-black' : 'key-white'),
+              'data-key': key.id
+            }, [el('span', { class: 'key-label' }), el('span', { class: 'key-mark', 'aria-hidden': 'true' })]);
+            if (key.black) button.style.setProperty('--after', String(whiteIndex));
+            button.setAttribute('aria-label', t('keyLabel', { name: keyName(key) }));
+            button.addEventListener('pointerdown', function (event) {
+              event.preventDefault();
+              onKeyInput(key.id);
+            });
+            button.addEventListener('click', function (event) {
+              if (event.detail === 0) onKeyInput(key.id);
+            });
+            keyEls[key.id] = button;
+            board.appendChild(button);
+          });
+          board.style.setProperty('--key-height', CONFIG.keyHeightPx + 'px');
+          relabelKeys();
+        }
+
+        // ใส่ข้อความบนคีย์ใหม่ตามการตั้งค่าชื่อบนคีย์
+        function relabelKeys() {
+          KEYS.forEach(function (key) {
+            keyEls[key.id].querySelector('.key-label').textContent = keyLabelText(key);
+          });
+        }
+
+        // เล่นเสียงของคีย์หนึ่งตัว (วินาทีเริ่มนับจากตอนนี้) ใช้รูปคลื่นที่ตั้งไว้
+        function playKeyTone(keyId, durSec, whenSec) {
+          playTone(Core.midiToHz(Core.keyById(keyId).midi), durSec, whenSec, settings.wave);
+        }
+
+        // เล่นเสียงของคีย์หนึ่งตัวทันที
+        function playKey(keyId, durSec) {
+          initAudio();
+          playKeyTone(keyId, durSec || 0.4, 0);
+        }
+
+        // ทำให้คีย์สว่างเป็นเวลา ms มิลลิวินาที (ตัวนับป้องกันไม่ให้การดับครั้งเก่าดับครั้งใหม่)
+        function lightKey(keyId, ms) {
+          var node = keyEls[keyId];
+          if (!node) return;
+          litTokens[keyId] = (litTokens[keyId] || 0) + 1;
+          var token = litTokens[keyId];
+          node.classList.add('is-lit');
+          setTimeout(function () {
+            if (litTokens[keyId] === token) node.classList.remove('is-lit');
+          }, ms);
+        }
+
+        // ล้างสถานะสว่างของทุกคีย์
+        function clearLit() {
+          KEYS.forEach(function (key) {
+            litTokens[key.id] = (litTokens[key.id] || 0) + 1;
+            keyEls[key.id].classList.remove('is-lit');
+          });
+        }
+
+        // กะพริบสถานะของคีย์ชั่วครู่ (ถูก ผิด หรือกำลังกด)
+        function flashKey(keyId, stateName, ms) {
+          var node = keyEls[keyId];
+          node.classList.add(stateName);
+          flashTimers.push(
+            setTimeout(function () {
+              node.classList.remove(stateName);
+            }, ms)
+          );
+        }
+
+        // ล้างตัวจับเวลาที่ค้างอยู่ของลำดับเกมและการกะพริบ
+        function clearFlow() {
+          flowTimers.forEach(clearTimeout);
+          flowTimers = [];
+        }
+
+        // เล่นรายการโน้ตตามเวลาจริง: ตั้งเสียงล่วงหน้าเล็กน้อย และอัปเดตหน้าจอเมื่อถึงเวลา
+        // เวลาอ้างอิงคือ performance.now ไม่ใช่นาฬิกาเสียง ถ้าไม่มีเสียงก็ยังเดินครบ คืนเวลารวม (มิลลิวินาที)
+        function startPlayback(items, bpm, lit, done) {
+          if (playback) return 0;
+          var plan = Core.schedule(items, bpm, CONFIG.noteGapRatio);
+          if (document.hidden) {
+            interrupted = { items: items, bpm: bpm, lit: lit, done: done };
+            return plan.totalMs;
+          }
+          playback = { plan: plan, items: items, bpm: bpm, lit: lit, done: done };
+          playback.startMs = performance.now();
+          playback.soundNext = 0;
+          playback.lightNext = 0;
+          emit('playbackStart', { length: items.length, bpm: bpm, lit: lit });
+          frameId = requestAnimationFrame(playbackFrame);
+          return plan.totalMs;
+        }
+
+        // ทุกเฟรมของการเล่นทำนอง
+        function playbackFrame() {
+          if (!playback) return;
+          var elapsed = performance.now() - playback.startMs;
+          var events = playback.plan.events;
+          // ข้ามโน้ตที่เลยเวลาไปมากเกินกำหนด (หน้าจอค้าง) โดยไม่เล่นเป็นชุดรัว
+          function tooLate(event) {
+            return event.atMs + CONFIG.maxLateMs < elapsed;
+          }
+          while (playback.soundNext < events.length && tooLate(events[playback.soundNext])) {
+            playback.soundNext += 1;
+          }
+          while (playback.lightNext < events.length && tooLate(events[playback.lightNext])) {
+            playback.lightNext += 1;
+          }
+          var due = [];
+          var horizon = elapsed + CONFIG.lookaheadMs;
+          while (playback.soundNext < events.length && events[playback.soundNext].atMs <= horizon) {
+            due.push(events[playback.soundNext]);
+            playback.soundNext += 1;
+          }
+          var late = due.filter(function (event) {
+            return event.atMs < elapsed;
+          });
+          due.forEach(function (event) {
+            if (late.length > 1 && event.atMs < elapsed && event !== late[late.length - 1]) return;
+            playKeyTone(event.keyId, event.durMs / 1000, Math.max(0, (event.atMs - elapsed) / 1000));
+          });
+          while (playback.lightNext < events.length && events[playback.lightNext].atMs <= elapsed) {
+            if (playback.lit) {
+              var shown = events[playback.lightNext];
+              lightKey(shown.keyId, shown.durMs * CONFIG.litRatio);
+            }
+            playback.lightNext += 1;
+          }
+          if (elapsed >= playback.plan.totalMs) {
+            finishPlayback();
+          } else {
+            frameId = requestAnimationFrame(playbackFrame);
+          }
+        }
+
+        // จบการเล่นทำนอง แล้วทำงานต่อที่ฝากไว้
+        function finishPlayback() {
+          var done = playback.done;
+          var length = playback.items.length;
+          playback = null;
+          clearLit();
+          emit('playbackEnd', { length: length });
+          if (done) done();
+        }
+
+        // ยกเลิกการเล่นทำนองที่กำลังเล่นอยู่ (ไม่ทำงานต่อ)
+        function cancelPlayback() {
+          cancelAnimationFrame(frameId);
+          playback = null;
+          interrupted = null;
+          clearLit();
+        }
+
+        // แสดงข้อความสถานะของตา (ฟังก่อน ถึงตาคุณ ...)
+        function setStatus(key) {
+          byId('status').textContent = key ? t(key) : '';
+        }
+
+        // วาดจุดบอกความคืบหน้า จุดละหนึ่งโน้ต
+        function makeDots(count) {
+          var box = byId('dots');
+          box.textContent = '';
+          for (var i = 0; i < count; i++) box.appendChild(el('span', { class: 'dot' }));
+        }
+
+        // ระบายจุดที่เล่นตามแล้ว
+        function fillDot(index) {
+          var dot = byId('dots').children[index];
+          if (dot) dot.classList.add('is-filled');
+        }
+
+        // ขีดเส้นรอบคีย์แรกของท่อนในโหมดฟังอย่างเดียว
+        function markStartKey() {
+          KEYS.forEach(function (key) {
+            keyEls[key.id].classList.remove('is-start');
+          });
+          if (game && game.mode === 'blind' && game.target.length) keyEls[game.target[0]].classList.add('is-start');
+        }
+
+        // ขีดจำกัดจำนวนครั้งที่ฟังซ้ำได้ของโหมดนี้ (ไม่จำกัดคือ null)
+        function replayLimit() {
+          if (!game) return null;
+          if (game.mode === 'grow') return CONFIG.growReplays;
+          if (game.mode === 'blind') return CONFIG.blindReplays;
+          return null;
+        }
+
+        // ปรับปุ่มฟังอีกครั้งและข้อความจำนวนครั้งที่เหลือ
+        function updateReplayUi() {
+          var limit = replayLimit();
+          var playing = Boolean(game && game.status === 'play' && !playback);
+          var button = byId('replayBtn');
+          button.hidden = !game || game.mode === 'free';
+          button.disabled = !playing || (limit !== null && game.replaysLeft <= 0);
+          byId('replaysLeft').textContent = limit !== null && game ? t('replaysLeft', { n: game.replaysLeft }) : '';
+        }
+
+        // ปรับตัวเลขบนแถบแสดงผลระหว่างเล่น
+        function renderHud() {
+          if (!game || game.mode === 'free') return;
+          byId('hudScore').textContent = String(game.score);
+          var lives = byId('hudLives');
+          lives.textContent = '';
+          if (game.mode === 'grow') {
+            var hearts = el('span', { class: 'hearts', 'aria-hidden': 'true' });
+            for (var i = 0; i < game.lives; i++) {
+              var heart = 'M12 21C4 14 2 10 2 7a5 5 0 0 1 10-1a5 5 0 0 1 10 1c0 3-2 7-10 14z';
+              var icon = svg('path', { d: heart, fill: 'currentColor' });
+              hearts.appendChild(svg('svg', { viewBox: '0 0 24 24' }, [icon]));
+            }
+            lives.appendChild(hearts);
+            lives.appendChild(document.createTextNode(t('hudLives', { n: game.lives })));
+            byId('hudProgress').textContent = t('hudLength', { n: game.seq.length });
+          } else {
+            byId('hudProgress').textContent = t('phraseLabel', { i: game.phraseIndex + 1, n: game.phrases.length });
+          }
+          byId('hudLivesBox').hidden = game.mode !== 'grow';
+        }
+
+        // เริ่มช่วงฟัง: เล่นทำนองให้ฟัง แล้วถึงตาผู้เล่น (ผู้เล่นกดไม่ได้ระหว่างฟัง)
+        function beginListen(items, bpm, lit, target) {
+          game.status = 'listen';
+          game.items = items;
+          game.bpm = bpm;
+          game.lit = lit;
+          game.target = target;
+          game.turn = null;
+          setStatus('statusListen');
+          makeDots(target.length);
+          markStartKey();
+          updateReplayUi();
+          renderHud();
+          startPlayback(items, bpm, lit, function () {
+            flowTimers.push(
+              setTimeout(function () {
+                if (!game || game.status !== 'listen') return;
+                game.turn = Core.startTurn(target);
+                game.status = 'play';
+                setStatus('statusPlay');
+                updateReplayUi();
+              }, CONFIG.afterPlaybackMs)
+            );
+          });
+        }
+
+        // รายการโน้ตจากรายการรหัสคีย์ (ทุกตัวยาวหนึ่งจังหวะ)
+        function itemsOf(keyIds) {
+          return keyIds.map(function (id) {
+            return { keyId: id, beats: 1 };
+          });
+        }
+
+        // ตั้งตัวจับเวลาของลำดับเกมที่ถูกล้างเมื่อออกจากเกม
+        function later(fn, ms) {
+          flowTimers.push(setTimeout(fn, ms));
+        }
+
+        // ผู้เล่นกดคีย์ (จากเมาส์ นิ้ว แป้นพิมพ์ หรือปุ่ม Enter)
+        function onKeyInput(keyId) {
+          initAudio();
+          if (!game || activeScreen !== 'play') return;
+          var key = Core.keyById(keyId);
+          var node = keyEls[keyId];
+          if (game.mode === 'free') {
+            playKey(keyId, 0.5);
+            flashKey(keyId, 'is-down', 120);
+            byId('readout').textContent = t('lastNote', { solfege: key.solfege || key.letter, letter: key.letter });
+            emit('notePress', { keyId: keyId, midi: key.midi, expected: null, correct: null, index: null });
+            return;
+          }
+          if (playback || game.status !== 'play' || node.classList.contains('is-off')) return;
+          flashKey(keyId, 'is-down', 100);
+          var expected = game.turn.target[game.turn.index];
+          var step = Core.press(game.turn, keyId);
+          game.turn = step.turn;
+          if (step.outcome === 'wrong') {
+            playTone(110, 0.25, 0, 'square');
+            flashKey(keyId, 'is-wrong', CONFIG.keyFlashMs);
+            game.mistakes += 1;
+            game.roundMistakes += 1;
+            var wrongAt = game.turn.index;
+            emit('notePress', { keyId: keyId, midi: key.midi, expected: expected, correct: false, index: wrongAt });
+            onWrong();
+            return;
+          }
+          var index = game.turn.index - 1;
+          playKey(keyId, 0.35);
+          fillDot(index);
+          flashKey(keyId, 'is-right', CONFIG.keyFlashMs);
+          emit('notePress', { keyId: keyId, midi: key.midi, expected: expected, correct: true, index: index });
+          if (step.outcome === 'complete') onComplete();
+        }
+
+        // กดผิด: ตัดสินตามโหมด ว่าเสียชีวิต ลองใหม่ หรือเฉลยท่อน
+        function onWrong() {
+          game.status = 'busy';
+          setStatus('wrongNote');
+          updateReplayUi();
+          if (game.mode === 'grow') {
+            game.lives -= 1;
+            emit('roundLost', { round: game.round, livesLeft: game.lives, triesLeft: null });
+            renderHud();
+            later(function () {
+              if (game.lives <= 0) endGame('lives');
+              else beginListen(game.items, game.bpm, true, game.target);
+            }, CONFIG.wrongPauseMs);
+            return;
+          }
+          game.tries += 1;
+          var triesLeft = CONFIG.triesPerChunk - game.tries;
+          emit('roundLost', { round: game.phraseIndex + 1, livesLeft: null, triesLeft: Math.max(0, triesLeft) });
+          later(function () {
+            if (triesLeft > 0) {
+              beginListen(game.items, game.bpm, true, game.target);
+            } else {
+              game.results.push(0);
+              game.status = 'shown';
+              setStatus('statusShown');
+              startPlayback(game.items, game.bpm * CONFIG.slowFactor, true, function () {
+                later(nextPhrase, CONFIG.afterPlaybackMs);
+              });
+            }
+          }, CONFIG.wrongPauseMs);
+        }
+
+        // เล่นตามครบหนึ่งรอบหรือหนึ่งท่อน: ให้คะแนนแล้วไปต่อ
+        function onComplete() {
+          game.status = 'busy';
+          var points = 0;
+          if (game.mode === 'grow') {
+            game.cleanStreak = game.roundMistakes === 0 ? game.cleanStreak + 1 : 0;
+            points = Core.growRoundScore(game.seq.length, game.cleanStreak, CONFIG);
+            game.longest = Math.max(game.longest, game.seq.length);
+            game.solved += 1;
+            stats.rounds += 1;
+            saveStats();
+            emit('roundWon', {
+              round: game.round,
+              length: game.seq.length,
+              points: points,
+              mistakes: game.roundMistakes
+            });
+          } else {
+            var tryNumber = game.tries + 1;
+            points = Core.chunkScore(tryNumber, CONFIG);
+            game.results.push(tryNumber);
+            game.solved += 1;
+            game.streak = tryNumber === 1 ? game.streak + 1 : 0;
+            if (tryNumber === 1) game.firstTry += 1;
+            emit('roundWon', {
+              round: game.phraseIndex + 1,
+              length: game.target.length,
+              points: points,
+              mistakes: game.tries
+            });
+          }
+          game.score += points;
+          var streak = game.mode === 'grow' ? game.cleanStreak : game.streak;
+          emit('scoreChange', { score: game.score, delta: points, streak: streak });
+          popScore(byId('hudScoreBox'), points);
+          renderHud();
+          setStatus('');
+          later(function () {
+            if (game.mode === 'grow') nextRound();
+            else nextPhrase();
+          }, CONFIG.keyFlashMs + 150);
+        }
+
+        // โหมดต่อทำนอง: เพิ่มโน้ตหนึ่งตัวแล้วเริ่มรอบใหม่
+        function nextRound() {
+          game.round += 1;
+          game.roundMistakes = 0;
+          game.replaysLeft = CONFIG.growReplays;
+          game.seq.push(Core.nextNote(game.seq, game.pool, game.rng));
+          beginListen(itemsOf(game.seq), Core.growTempo(game.round, CONFIG), true, game.seq.slice());
+        }
+
+        // โหมดเรียนเพลงและฟังอย่างเดียว: ไปท่อนถัดไป หรือจบถ้าครบแล้ว
+        function nextPhrase() {
+          if (!game || game.status === 'over') return;
+          game.phraseIndex += 1;
+          if (game.phraseIndex >= game.phrases.length) {
+            finishPhrases();
+            return;
+          }
+          startPhrase();
+        }
+
+        // เริ่มท่อนที่ game.phraseIndex
+        function startPhrase() {
+          var phrase = game.phrases[game.phraseIndex];
+          game.tries = 0;
+          game.replaysLeft = CONFIG.blindReplays;
+          var bpm = game.mode === 'tune' ? game.tune.bpm : CONFIG.blindBpm;
+          var items = phrase.map(function (item) {
+            return { keyId: item.keyId, beats: item.beats };
+          });
+          var ids = items.map(function (item) {
+            return item.keyId;
+          });
+          beginListen(items, bpm, game.mode !== 'blind', ids);
+        }
+
+        // ครบทุกท่อน: โหมดเรียนเพลงเผยชื่อเพลงและเล่นทั้งเพลง โหมดฟังอย่างเดียวจบเกม
+        function finishPhrases() {
+          if (game.mode !== 'tune') {
+            endGame('done');
+            return;
+          }
+          game.status = 'card';
+          var tune = game.tune;
+          var learned = Core.tuneLearned(game.results, CONFIG);
+          game.learnedNow = learned;
+          if (learned && !isLearned(tune)) {
+            stats.learned.push(tune.id);
+            saveStats();
+            emit('tuneLearned', { tuneId: tune.id, title: tune.title });
+          }
+          byId('tuneCard').hidden = false;
+          byId('tuneCardTitle').textContent = t('tuneCardTitle', { title: tune.title });
+          byId('tuneCardBy').textContent = t('tuneCardBy', { by: tune.by });
+          byId('tuneCardLine').textContent = learned ? t('tuneLearnedLine') : t('tuneNotYetLine');
+          setStatus('');
+          byId('nextBtn').hidden = false;
+          byId('nextBtn').focus();
+          startPlayback(Core.parseTune(tune.notes), tune.bpm, true, null);
+          updateReplayUi();
+        }
+
+        // เปิดหน้าเล่นสำหรับโหมดและระดับที่เลือก
+        function openPlay(mode, level) {
+          cancelPlayback();
+          clearFlow();
+          game = {
+            mode: mode,
+            levelId: level.id,
+            level: level,
+            status: 'busy',
+            score: 0,
+            mistakes: 0,
+            roundMistakes: 0,
+            solved: 0,
+            firstTry: 0,
+            streak: 0,
+            cleanStreak: 0,
+            longest: 0,
+            lives: CONFIG.growLives,
+            round: 1,
+            tries: 0,
+            results: [],
+            phraseIndex: 0,
+            replaysLeft: 0,
+            tune: null,
+            phrases: []
+          };
+          var tunePool = POOLS.filter(function (item) {
+            return item.id === 'major';
+          })[0].keys;
+          var pool = mode === 'tune' ? tunePool : poolOf(level);
+          game.pool = pool;
+          KEYS.forEach(function (key) {
+            var off = mode !== 'free' && pool.indexOf(key.id) === -1;
+            keyEls[key.id].classList.toggle('is-off', off);
+            keyEls[key.id].classList.remove('is-start', 'is-right', 'is-wrong', 'is-down');
+            if (off) keyEls[key.id].setAttribute('aria-disabled', 'true');
+            else keyEls[key.id].removeAttribute('aria-disabled');
+          });
+          var free = mode === 'free';
+          byId('playTitle').textContent = MODES.filter(function (item) {
+            return item.id === mode;
+          })[0].label;
+          byId('hud').hidden = free;
+          byId('status').hidden = free;
+          byId('dots').hidden = free;
+          byId('readout').hidden = !free;
+          byId('readout').textContent = t('readoutNone');
+          byId('tuneCard').hidden = true;
+          byId('nextBtn').hidden = true;
+          byId('replayBtn').hidden = free;
+          byId('replaysLeft').textContent = '';
+          setStatus('');
+          byId('dots').textContent = '';
+          showScreen('play');
+        }
+
+        // เริ่มเกมใหม่ตามโหมด ระดับ และเพลงที่เลือก
+        function newGame(mode, levelId, tuneId) {
+          initAudio();
+          var level = LEVELS.filter(function (item) {
+            return item.id === levelId;
+          })[0] || LEVELS[0];
+          openPlay(mode, level);
+          game.rng = Core.makeRng(CONFIG.seed || Date.now());
+          if (mode === 'free') {
+            game.status = 'play';
+            emit('gameStart', { mode: mode, level: level.id, tuneId: null });
+            return;
+          }
+          if (mode === 'grow') {
+            game.seq = Core.makePhrase(level.growStartLen, game.pool, game.rng);
+            game.replaysLeft = CONFIG.growReplays;
+          } else if (mode === 'tune') {
+            game.tune = TUNES.filter(function (tune) {
+              return tune.id === tuneId;
+            })[0];
+            game.phrases = Core.chunks(Core.parseTune(game.tune.notes), level.chunkLen);
+          } else {
+            for (var i = 0; i < CONFIG.blindPhrases; i++) {
+              var phrase = Core.makePhrase(level.phraseLen, game.pool, game.rng);
+              game.phrases.push(itemsOf(phrase));
+            }
+          }
+          emit('gameStart', { mode: mode, level: level.id, tuneId: game.tune ? game.tune.id : null });
+          renderHud();
+          if (mode === 'grow') {
+            beginListen(itemsOf(game.seq), Core.growTempo(1, CONFIG), true, game.seq.slice());
+          } else {
+            startPhrase();
+          }
+        }
+
+        // จบเกม: คำนวณผล บันทึกสถิติ ให้เหรียญ แจ้งเหตุการณ์ และแสดงหน้าสรุป
+        function endGame(reason) {
+          if (!game || game.status === 'over' || game.mode === 'free') return;
+          game.status = 'over';
+          cancelPlayback();
+          clearFlow();
+          var total = game.phrases.length;
+          var result = {
+            mode: game.mode,
+            level: game.levelId,
+            tuneId: game.tune ? game.tune.id : null,
+            score: game.score,
+            stars: 0,
+            length: game.longest,
+            solved: game.solved,
+            total: total,
+            firstTry: game.firstTry,
+            mistakes: game.mistakes
+          };
+          result.stars = Core.stars(game.mode, result);
+          var bestKey = game.mode === 'tune' ? 'tune:' + result.tuneId : game.mode + ':' + game.levelId;
+          var newBest = Core.isBetter(result, stats.best[bestKey]);
+          if (newBest) {
+            var entry = { score: result.score };
+            if (game.mode === 'grow') entry.length = result.length;
+            if (game.mode === 'blind') entry.solved = result.solved;
+            stats.best[bestKey] = entry;
+          }
+          saveStats();
+          awardBadges(result);
+          lastResult = { result: result, reason: reason, newBest: newBest, learned: game.learnedNow, game: game };
+          emit('gameEnd', result);
+          renderResult();
+          showScreen('result');
+        }
+
+        // ดาวเป็นข้อความ ไม่ใช้สีหรือรูปอย่างเดียว
+        function starsText(count) {
+          return count >= 3 ? TEXT.stars3 : count === 2 ? TEXT.stars2 : TEXT.stars1;
+        }
+
+        // วาดหน้าสรุปผลของเกมที่เพิ่งจบ
+        function renderResult() {
+          var info = lastResult;
+          var result = info.result;
+          var headings = { grow: TEXT.resultGrow, tune: TEXT.resultTune, blind: TEXT.resultBlind };
+          byId('resultHeading').textContent = headings[result.mode];
+          var body = byId('resultBody');
+          body.textContent = '';
+          var scoreLine = el('p', { class: 'result-score', id: 'resultScore' });
+          body.appendChild(scoreLine);
+          function statLine(text) {
+            body.appendChild(el('p', { class: 'stat-line', text: text }));
+          }
+          statLine(t('statStars', { stars: starsText(result.stars) }));
+          if (result.mode === 'grow') statLine(t('statLength', { n: result.length }));
+          else statLine(t('statPhrases', { n: result.solved, m: result.total }));
+          statLine(t('statMistakes', { n: result.mistakes }));
+          if (info.newBest) body.appendChild(el('p', { class: 'new-best', text: TEXT.newBest }));
+          if (result.mode === 'tune') {
+            var tune = info.game.tune;
+            body.appendChild(el('h2', { text: t('tuneCardTitle', { title: tune.title }) }));
+            body.appendChild(el('p', { class: 'soft', text: t('tuneCardBy', { by: tune.by }) }));
+            body.appendChild(el('p', { text: info.learned ? t('tuneLearnedLine') : t('tuneNotYetLine') }));
+          }
+          body.appendChild(el('h2', { text: TEXT.nextTitle }));
+          if (result.mode === 'grow') {
+            body.appendChild(el('p', { text: t('nextGrow', { n: result.length }) }));
+          } else if (result.mode === 'blind') {
+            body.appendChild(el('p', { text: TEXT.nextBlind }));
+          } else {
+            var retries = info.game.phrases
+              .map(function (phrase, index) {
+                return { phrase: phrase, index: index, tries: info.game.results[index] };
+              })
+              .filter(function (item) {
+                return item.tries !== 1;
+              });
+            if (!retries.length) {
+              body.appendChild(el('p', { text: TEXT.nextTuneClean }));
+            } else {
+              body.appendChild(el('p', { text: TEXT.nextTuneRetry }));
+              var list = el('ul', { class: 'retry-list' });
+              retries.forEach(function (item) {
+                var listen = el('button', { type: 'button', text: TEXT.btnListen });
+                listen.addEventListener('click', function () {
+                  listenTo(item.phrase, info.game.tune.bpm);
+                });
+                var label = t('phraseLabel', { i: item.index + 1, n: info.game.phrases.length });
+                list.appendChild(el('li', {}, [el('span', { text: label }), listen]));
+              });
+              body.appendChild(list);
+            }
+          }
+          countUp(scoreLine, result.score);
+          revealRows(body);
+        }
+
+        // ฟังรายการโน้ตโดยไม่ผูกกับเกม (ใช้ในสมุดเพลงและหน้าสรุป) ถ้าไม่มีเสียงจะแจ้งให้ทราบ
+        function listenTo(items, bpm) {
+          initAudio();
+          if (!audio) {
+            showToast(TEXT.audioNeeded);
+            return;
+          }
+          startPlayback(items, bpm, false, null);
+        }
+
+        // สร้างข้อความสถิติที่ดีที่สุดของโหมดและระดับที่เลือกบนหน้าแรก
+        function bestText() {
+          if (settings.mode === 'free') return '';
+          var key = settings.mode === 'tune' ? 'tune:' + chosenTuneId : settings.mode + ':' + settings.level;
+          var best = stats.best[key];
+          if (!best || typeof best !== 'object') return TEXT.bestNone;
+          var value = String(best.score);
+          if (settings.mode === 'grow') value += ' · ' + t('statLength', { n: best.length });
+          return t('bestLine', { value: value });
+        }
+
+        // วาดหน้าแรก: โหมด ระดับ เพลง สถิติ และเหรียญ
+        function renderHome() {
+          validateChoices();
+          var audioOk = audioAvailable();
+          var modes = byId('modes');
+          modes.textContent = '';
+          MODES.forEach(function (mode) {
+            var blocked = mode.needsSound && !audioOk;
+            var pressed = mode.id === settings.mode ? 'true' : 'false';
+            var button = el('button', { type: 'button', 'aria-pressed': pressed }, [
+              el('strong', { text: mode.label }),
+              el('small', { text: mode.about })
+            ]);
+            if (blocked) button.setAttribute('aria-disabled', 'true');
+            button.addEventListener('click', function () {
+              if (blocked) {
+                byId('earNotice').textContent = TEXT.audioNeeded;
+                return;
+              }
+              byId('earNotice').textContent = '';
+              settings.mode = mode.id;
+              saveSettings();
+              renderHome();
+            });
+            modes.appendChild(button);
+          });
+          var levels = byId('levels');
+          levels.textContent = '';
+          LEVELS.filter(levelUsable).forEach(function (level) {
+            var pressed = level.id === settings.level ? 'true' : 'false';
+            var button = el('button', { type: 'button', 'aria-pressed': pressed, text: level.label });
+            button.addEventListener('click', function () {
+              settings.level = level.id;
+              saveSettings();
+              renderHome();
+            });
+            levels.appendChild(button);
+          });
+          byId('levelBlock').hidden = settings.mode === 'free';
+          renderTunePicker();
+          byId('homeBest').textContent = bestText();
+          byId('learnedLine').textContent = t('learnedLine', { n: stats.learned.length, m: validTunes().length });
+          var labels = byId('labelModes');
+          labels.textContent = '';
+          var labelChoices = [
+            ['none', 'keyLabelsNone'],
+            ['letters', 'keyLabelsLetters'],
+            ['solfege', 'keyLabelsSolfege']
+          ];
+          labelChoices.forEach(function (pair) {
+            var pressed = settings.keyLabels === pair[0] ? 'true' : 'false';
+            var button = el('button', { type: 'button', 'aria-pressed': pressed, text: TEXT[pair[1]] });
+            button.addEventListener('click', function () {
+              settings.keyLabels = pair[0];
+              saveSettings();
+              relabelKeys();
+              renderHome();
+            });
+            labels.appendChild(button);
+          });
+          renderMedals();
+        }
+
+        // วาดรายการเพลงของระดับที่เลือก (เพลงที่ยังไม่เรียนแสดงเป็นเพลงปริศนา)
+        function renderTunePicker() {
+          byId('tuneBlock').hidden = settings.mode !== 'tune';
+          var list = byId('tunes');
+          list.textContent = '';
+          tunesOfLevel(currentLevel()).forEach(function (tune) {
+            var learned = isLearned(tune);
+            var pressed = tune.id === chosenTuneId ? 'true' : 'false';
+            var kids = [el('strong', { text: tuneTitle(tune) })];
+            if (learned) kids.push(el('small', { text: tune.by + ' · ' + t('learnedMark') }));
+            var button = el('button', { type: 'button', 'aria-pressed': pressed }, kids);
+            var title = button.querySelector('strong');
+            if (learned) title.insertBefore(drawMedalIcon(), title.firstChild);
+            button.addEventListener('click', function () {
+              chosenTuneId = tune.id;
+              renderHome();
+            });
+            list.appendChild(button);
+          });
+        }
+
+        // เหรียญเล็ก ๆ หน้าชื่อเพลงที่เรียนแล้ว
+        function drawMedalIcon() {
+          return svg('svg', { viewBox: '0 0 32 32', 'aria-hidden': 'true' }, [
+            svg('path', { d: 'M10 2l6 10l6-10', fill: 'none', stroke: 'currentColor', 'stroke-width': 2 }),
+            svg('circle', { cx: 16, cy: 20, r: 9, fill: 'none', stroke: 'currentColor', 'stroke-width': 2 })
+          ]);
+        }
+
+        // วาดรายการเพลงในสมุดเพลง
+        function renderSongbook() {
+          var list = byId('songList');
+          list.textContent = '';
+          validTunes().forEach(function (tune) {
+            var text = el('div', { class: 'song-text' }, [el('strong', { text: tuneTitle(tune) })]);
+            var kids = [text];
+            if (isLearned(tune)) {
+              text.appendChild(el('div', { class: 'soft small', text: tune.by }));
+              var listen = el('button', { type: 'button', text: TEXT.btnListen });
+              listen.addEventListener('click', function () {
+                listenTo(Core.parseTune(tune.notes), tune.bpm);
+              });
+              kids.push(listen);
+            }
+            list.appendChild(el('li', {}, kids));
+          });
+        }
+
+        // กลับหน้าแรก และหยุดทุกอย่างที่ค้างอยู่
+        function returnHome() {
+          cancelPlayback();
+          clearFlow();
+          game = null;
+          renderHome();
+          showScreen('home');
+        }
+
+        // ไปหน้าที่ระบุ (ใช้ได้เฉพาะหน้าที่เปิดได้ในขณะนั้น) คืนค่าจริงถ้าสำเร็จ
+        function goTo(name) {
+          if (name === 'home') {
+            returnHome();
+            return true;
+          }
+          if (name === 'howto' || name === 'badges') {
+            showScreen(name);
+            return true;
+          }
+          if (name === 'songbook') {
+            renderSongbook();
+            showScreen(name);
+            return true;
+          }
+          if ((name === 'play' && game) || (name === 'result' && lastResult)) {
+            showScreen(name);
+            return true;
+          }
+          return false;
+        }
+
+        // ล้างข้อมูลเสร็จแล้ว ให้หน้าจอกลับไปเป็นค่าเริ่มต้น
+        function resetAfterClear() {
+          byId('volume').value = settings.volume;
+          byId('theme').value = settings.theme;
+          byId('reduce').checked = settings.reduceMotion;
+          lastResult = null;
+          chosenTuneId = null;
+          relabelKeys();
+          renderHome();
+        }
+
+        // ฟังอีกครั้งตามขีดจำกัดของโหมด คืนค่าจริงถ้าเริ่มฟังได้
+        function replay() {
+          if (!game || game.status !== 'play' || playback) return false;
+          var limit = replayLimit();
+          if (limit !== null && game.replaysLeft <= 0) return false;
+          if (limit !== null) game.replaysLeft -= 1;
+          beginListen(game.items, game.bpm, game.lit, game.target);
+          return true;
+        }
+
+        // เล่นลำดับคีย์ที่ให้มา (ทุกตัวยาวหนึ่งจังหวะ) คืนเวลารวม ถ้ากำลังเล่นอยู่ไม่ทำอะไรและคืน 0
+        function playSequence(keyIds, bpm, lit) {
+          initAudio();
+          var valid = keyIds.filter(function (id) {
+            return Core.keyById(id);
+          });
+          if (!valid.length) return 0;
+          return startPlayback(itemsOf(valid), bpm || CONFIG.growBpm, lit !== false, null);
+        }
+
+        // สำเนาสถานะปัจจุบันของเกม (อ่านอย่างเดียว)
+        function getState() {
+          var view = { screen: activeScreen, playing: Boolean(playback) };
+          if (game) {
+            view.mode = game.mode;
+            view.level = game.levelId;
+            view.tuneId = game.tune ? game.tune.id : null;
+            view.status = game.status;
+            view.score = game.score;
+            view.lives = game.lives;
+            view.round = game.round;
+            view.length = game.seq ? game.seq.length : null;
+            view.phraseIndex = game.phraseIndex;
+            view.phraseCount = game.phrases.length;
+            view.tries = game.tries;
+            view.replaysLeft = game.replaysLeft;
+            view.index = game.turn ? game.turn.index : 0;
+            view.mistakes = game.mistakes;
+          }
+          return view;
+        }
+
+        // ผูกปุ่มทั้งหมดของเกม
+        function bindControls() {
+          bindSharedControls();
+          byId('startPlay').addEventListener('click', function () {
+            initAudio();
+            var mode = MODES.filter(function (item) {
+              return item.id === settings.mode;
+            })[0];
+            if (mode.needsSound && !audio) {
+              byId('earNotice').textContent = TEXT.audioNeeded;
+              return;
+            }
+            byId('earNotice').textContent = '';
+            if (mode.id === 'tune' && !chosenTuneId) return;
+            newGame(settings.mode, settings.level, chosenTuneId);
+          });
+          byId('randomTune').addEventListener('click', function () {
+            var tunes = tunesOfLevel(currentLevel());
+            var fresh = tunes.filter(function (tune) {
+              return !isLearned(tune);
+            });
+            var from = fresh.length ? fresh : tunes;
+            if (!from.length) return;
+            var rng = Core.makeRng(CONFIG.seed || Date.now());
+            chosenTuneId = from[Math.floor(rng() * from.length)].id;
+            renderHome();
+          });
+          byId('openSongbook').addEventListener('click', function () {
+            goTo('songbook');
+          });
+          byId('closeSongbook').addEventListener('click', returnHome);
+          byId('replayBtn').addEventListener('click', replay);
+          byId('nextBtn').addEventListener('click', function () {
+            endGame('done');
+          });
+          twoStep(byId('quitBtn'), 'btnQuit', 'btnQuitConfirm', returnHome, function () {
+            return !game || game.mode === 'free' || game.status === 'over' || game.status === 'card';
+          });
+          byId('againBtn').addEventListener('click', function () {
+            if (lastResult) newGame(lastResult.result.mode, lastResult.result.level, lastResult.result.tuneId);
+          });
+          byId('homeBtn').addEventListener('click', returnHome);
+          document.addEventListener('keydown', function (event) {
+            if (event.repeat || event.ctrlKey || event.metaKey || event.altKey || activeScreen !== 'play') return;
+            var target = event.target;
+            var tag = target && target.tagName ? target.tagName.toLowerCase() : '';
+            if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
+            var name = String(event.key).toLowerCase();
+            var key = KEYS.filter(function (item) {
+              return item.key === name;
+            })[0];
+            if (key) {
+              event.preventDefault();
+              onKeyInput(key.id);
+            }
+          });
+          document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+              if (playback) {
+                interrupted = { items: playback.items, bpm: playback.bpm, lit: playback.lit, done: playback.done };
+                cancelAnimationFrame(frameId);
+                playback = null;
+                clearLit();
+              }
+            } else if (interrupted) {
+              var again = interrupted;
+              interrupted = null;
+              startPlayback(again.items, again.bpm, again.lit, again.done);
+            }
+          });
+        }
+
+        window.Game = {
+          on: on,
+          getState: getState,
+          getStats: function () {
+            return clone(stats);
+          },
+          CONFIG: CONFIG,
+          DATA: DATA,
+          Core: Core,
+          runSelfCheck: runSelfCheck,
+          playTone: playTone,
+          showToast: showToast,
+          goTo: goTo,
+          playKey: playKey,
+          playSequence: playSequence,
+          getSequence: function () {
+            return game && game.target ? game.target.slice() : [];
+          },
+          replay: replay,
+          highlightKey: function (keyId, ms) {
+            if (Core.keyById(keyId)) lightKey(keyId, ms || 400);
+          },
+          setWave: function (type) {
+            if (WAVES.indexOf(type) === -1) return false;
+            settings.wave = type;
+            saveSettings();
+            return true;
+          },
+          addLife: function () {
+            if (!game || game.mode !== 'grow' || game.status === 'over' || game.lives >= CONFIG.growLives) return false;
+            game.lives += 1;
+            renderHud();
+            return true;
+          }
+        };
+
+        // เริ่มทำงานเมื่อโหลดหน้า
+        loadAll();
+        applyOptions();
+        applyText();
+        buildKeyboard();
+        bindControls();
+        renderHowto();
+        renderHome();
+        showStorageNotice();
+        if (new URLSearchParams(location.search).get('selfcheck') === '1') {
+          byId('settings').open = true;
+          showCheck();
+        } else if (!stats.seenHowto) {
+          showScreen('howto');
+        }
+        /* ═══════════ โซน E · ส่วนเสริมของนิสิต (เขียนเพิ่มที่นี่) ═══════════ */
+        /* วิธีใช้โซนนี้: เขียนส่วนเสริมของคุณที่นี่ โดยฟังเหตุการณ์ด้วย Game.on(ชื่อเหตุการณ์, ฟังก์ชัน)
+           และเรียกตัวช่วยของ Game เช่น Game.getSequence, Game.playSequence, Game.showToast
+           วางปุ่มหรือข้อความของคุณในช่องว่าง slotHome, slotHud, slotActions, slotPanel, slotResult ได้เลย
+           ห้ามแก้โซน C ถ้าส่วนเสริมพัง เกมจะเล่นต่อได้ และข้อความผิดพลาดจะไปแสดงที่ปุ่ม "ตรวจระบบ" */
+        /* เพิ่มส่วนเสริมที่นี่ */
+        /* ตัวอย่าง (ลบเครื่องหมายคอมเมนต์ออกเพื่อใช้): แสดงข้อความทุกครั้งที่กดคีย์ผิด
+        Game.on('notePress', function (detail) {
+          if (detail.correct === false) Game.showToast('ผิดที่ตัวที่ ' + (detail.index + 1));
+        });
+        */
+      }());
+    </script>
+  </body>
+</html>
